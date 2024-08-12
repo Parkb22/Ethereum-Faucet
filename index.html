@@ -107,7 +107,7 @@
             margin-bottom: 40px;
         }
 
-        /* Centering and sizing the banner ads */
+        /* Centering and sizing the banner ad */
         .banner-ad {
             background-color: #1a1a1a;
             border: 2px solid #ff00ff;
@@ -117,11 +117,8 @@
             box-shadow: 0px 0px 10px #ff00ff;
         }
 
-        /* Ensure banners match the block width */
-        .container .banner-ad,
-        .container .jumbotron,
-        .container .page-header,
-        .container .text-center {
+        /* Ensure banner matches the block width */
+        .container .banner-ad {
             width: 100%;
             max-width: 100%;
         }
@@ -156,13 +153,6 @@
             <a class="btn btn-lg" role="button" style="background-color: #ff00ff; color: #0d0d0d;" onclick="donateEther()">Donate OVER</a>
         </div>
 
-        <!-- Banner Ad Between Sections -->
-        <div class="banner-ad glass-effect">
-            <p class="neon-text">Advertise <a href="https://twitter.com/paj_eth">Here</a></p>
-            <!-- Replace with actual ad or image -->
-            <img src="https://lh5.googleusercontent.com/proxy/B30pPm77HaR-V7nrSJp4VLuqTburYEMVYWooXSaFzRNHbBcog0yGUlHUYiHn9_ou5DXAVfjTQxGBfl1jju31U0mI7jAZ2FOErMIF-8UWMkt6mAedSXnXuC3W" alt="Banner Ad">
-        </div>
-
         <div class="page-header glass-effect">
             <h3 class="neon-text" style="text-align: center;">Chain Details</h3>
         </div>
@@ -174,20 +164,14 @@
             <button onclick="addNetwork()"><b>Add to 🦊 MetaMask</b></button>
         </div>
 
-        <!-- Banner Ad Between Sections -->
-        <div class="banner-ad glass-effect">
-            <p class="neon-text">Advertise <a href="https://twitter.com/paj_eth">Here</a></p>
-            <!-- Replace with actual ad or image -->
-            <img src="https://lh5.googleusercontent.com/proxy/B30pPm77HaR-V7nrSJp4VLuqTburYEMVYWooXSaFzRNHbBcog0yGUlHUYiHn9_ou5DXAVfjTQxGBfl1jju31U0mI7jAZ2FOErMIF-8UWMkt6mAedSXnXuC3W" alt="Banner Ad">
-        </div>
-
         <div class="page-header glass-effect">
             <h3 class="neon-text" style="text-align: center;">Faucet Info</h3>
         </div>
-<div class="text-center glass-effect footer-spacing">
-    <b style="color: #ff00ff;">Contract Address:</b> <a href="https://dolphin.view.over.network/address/0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0" target="_blank" style="color: #00ffff;">0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0</a><br><br>
-    <div id="totalDistributed" style="color: #ff00ff; margin-top: 10px;">Calculating total OVER distributed...</div><br><br>
-    <i style="color: #00ffff;">Don't be greedy❤️❤️ Please donate testnet $OVER back to the faucet when finished with testing ❤️</i>
+        <div class="text-center glass-effect footer-spacing">
+            <b style="color: #ff00ff;">Contract Address:</b> <a href="https://dolphin.view.over.network/address/0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0" target="_blank" style="color: #00ffff;">0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0</a><br><br>
+            <div id="totalDistributed" style="color: #ff00ff; margin-top: 10px;">Calculating total OVER distributed...</div><br><br>
+            <i style="color: #00ffff;">Don't be greedy❤️❤️ Please donate testnet $OVER back to the faucet when finished with testing ❤️</i>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -195,6 +179,7 @@
         Made by <a href="https://twitter.com/paj_eth" target="_blank" style="color: #ff00ff;">Paj_ETH</a> with Love ❤️❤️
     </footer>
 
+    
     <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -344,77 +329,8 @@
                 });
             }
         }
- // Address of the contract
-    const contract_address = '0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0';
-
-    // ABI of the contract (minimal ABI to interact with contract events)
-    const contract_abi = [
-        {
-            "anonymous": false,
-            "inputs": [
-                {"indexed": true, "internalType": "address", "name": "from", "type": "address"},
-                {"indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256"}
-            ],
-            "name": "Deposit",
-            "type": "event"
-        },
-        {
-            "anonymous": false,
-            "inputs": [
-                {"indexed": true, "internalType": "address", "name": "to", "type": "address"}
-            ],
-            "name": "Withdrawal",
-            "type": "event"
-        }
-    ];
-
-    async function fetchTotalDistributed() {
-        try {
-            const web3 = new Web3(window.ethereum || new Web3.providers.HttpProvider('https://wallet-dolphin.rpc.over.network/'));
-            const contract = new web3.eth.Contract(contract_abi, contract_address);
-
-            // Get the number of 'Withdrawal' events (each event represents a withdrawal of 10 OVER)
-            const events = await contract.getPastEvents('Withdrawal', {
-                fromBlock: 0,
-                toBlock: 'latest'
-            });
-
-            const transactionCount = events.length;
-            const totalDistributed = transactionCount * 10; // Assuming each transaction gives out 10 OVER
-
-            document.getElementById("totalDistributed").innerHTML = `Total OVER Distributed: ${totalDistributed} OVER`;
-        } catch (error) {
-            console.error("Error fetching total distributed:", error);
-            document.getElementById("totalDistributed").innerHTML = "Error calculating total OVER distributed.";
-        }
-    }
-
-    window.addEventListener('load', function () {
-        if (typeof web3 !== 'undefined') {
-            fetchTotalDistributed();
-        }
+ 
     });
-        function getAccounts(callback) {
-            web3.eth.getAccounts((error,result) => {
-                if (error) {
-                    console.log(error);
-                } else {
-                    callback(result);
-                }
-            });
-        }
-        function getBalance() {
-            try {
-                web3.eth.getBalance(contract_address, function (error, wei) {
-                    if (!error) {
-                        var balance = web3.utils.fromWei(wei, 'ether');
-                        document.getElementById("balance").innerHTML = "Available Funds: " + balance + " OVER";
-                    }
-                });
-            } catch (err) {
-                document.getElementById("balance").innerHTML = err;
-            }
-        }
-    </script>
+</script>
 </body>
 </html>
