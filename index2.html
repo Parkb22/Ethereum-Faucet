@@ -134,16 +134,22 @@
             });
         });
 
-        function requestEther() {
-            getAccounts(function(result) {
-                const Faucet = new web3.eth.Contract(contract_abi, contract_address);
-                Faucet.methods.withdraw().send({ from: result[0] }, function (error, txHash) {
-                    document.getElementById("tx_result").innerHTML = !error 
-                        ? "TX created successfully with the hash: " + txHash 
-                        : error;
-                });
-            });
-        }
+       async function requestEther() {
+    try {
+        const accounts = await web3.eth.getAccounts(); // Get the user's accounts
+        const Faucet = new web3.eth.Contract(contract_abi, contract_address);
+
+        // Send the withdrawal transaction
+        const txHash = await Faucet.methods.withdraw().send({ from: accounts[0] });
+
+        // Display the transaction hash
+        document.getElementById("tx_result").innerHTML = "TX created successfully with the hash: " + txHash.transactionHash;
+    } catch (error) {
+        // Display any errors
+        document.getElementById("tx_result").innerHTML = error.message;
+    }
+}
+
 
         function donateEther() {
             let amount = prompt("How much OVER do you want to donate?", "0.5");
