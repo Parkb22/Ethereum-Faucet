@@ -149,12 +149,46 @@
             <h3 id="tx_result" class="text-info"></h3>
             <br>
           
-    <!-- Wallet Balance Section -->
-    <div class="glass-effect text-center">
-        <h3 class="neon-text">Check Your OVER Balance</h3>
-        <button id="connectButton" class="btn btn-lg" style="background-color: #00ffff; color: #0d0d0d;">Connect Wallet</button>
-        <p id="userBalance" style="color: #ff00ff; margin-top: 20px;">Balance: - OVER</p>
+  
+    <div class="container theme-showcase" role="main">
+        <!-- Wallet Balance Section -->
+        <div class="glass-effect text-center">
+            <h3 class="neon-text">Check Your OVER Balance</h3>
+            <button id="connectButton" class="btn btn-lg" style="background-color: #00ffff; color: #0d0d0d;">Connect Wallet</button>
+            <p id="userBalance" style="color: #ff00ff; margin-top: 20px;">Balance: - OVER</p>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.1/dist/web3.min.js"></script>
+    <script>
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    // Request account access
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const web3 = new Web3(window.ethereum);
+
+                    // Get the user's account
+                    const accounts = await web3.eth.getAccounts();
+                    const account = accounts[0];
+
+                    // Display the user's native token balance (e.g., OVER)
+                    const balance = await web3.eth.getBalance(account);
+                    const balanceInEther = web3.utils.fromWei(balance, 'ether'); // Convert Wei to Ether (or OVER in your case)
+
+                    document.getElementById("userBalance").innerText = `Balance: ${balanceInEther} OVER`;
+                } catch (error) {
+                    console.error("User denied account access or error occurred", error);
+                    document.getElementById("userBalance").innerText = "Error fetching balance";
+                }
+            } else {
+                console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+                document.getElementById("userBalance").innerText = "Please install MetaMask!";
+            }
+        }
+
+        document.getElementById("connectButton").addEventListener("click", connectWallet);
+    </script>
 
             <br>
             <a class="btn btn-lg" role="button" style="background-color: #00ffff; color: #0d0d0d;" onclick="requestEther()">Request OVER</a>
