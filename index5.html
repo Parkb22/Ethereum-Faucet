@@ -291,18 +291,21 @@
             }
         }
 
-        async function withdrawFunds() {
-            try {
-                document.getElementById("txResult").innerText = "Processing transaction...";
-                await faucetContract.methods.withdraw().send({ from: userAccount });
-                document.getElementById("txResult").innerText = "Transaction successful! You have withdrawn 0.1 ETH.";
-                updateFaucetBalance();
-                checkWithdrawalStatus();
-            } catch (error) {
-                console.error("Error processing transaction", error);
-                document.getElementById("txResult").innerText = "Transaction failed!";
-            }
-        }
+async function withdrawFunds() {
+    try {
+        document.getElementById("txResult").innerText = "Processing transaction...";
+        await faucetContract.methods.withdraw().send({ from: userAccount });
+        document.getElementById("txResult").innerText = "Transaction successful! You have withdrawn 0.1 ETH.";
+        
+        // Update faucet balance and withdrawal status after the transaction
+        await updateFaucetBalance();
+        await checkWithdrawalStatus();
+        
+    } catch (error) {
+        console.error("Error processing transaction", error);
+        document.getElementById("txResult").innerText = "Transaction failed!";
+    }
+}
 
         window.addEventListener('load', init);
     </script>
