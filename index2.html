@@ -161,7 +161,7 @@
           method: 'wallet_addEthereumChain',
           params: [
             {
-              chainId: chainId,
+              chainId: `0x${chainId.toString(16)}`,
               chainName: networkName,
               rpcUrls: [rpcURL],
               blockExplorerUrls: [explorerURL],
