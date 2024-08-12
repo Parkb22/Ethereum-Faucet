@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="OVER Testnet Faucet">
+    <meta name="author" content="OverStake">
+    <title>OVER Testnet Faucet</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 70px;
+            padding-bottom: 30px;
+            font-size: 0.9rem; /* Smaller font size for a more high-tech feel */
+        }
+        .banner-ad {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px; /* Space between ad and main content */
+        }
+        .jumbotron {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 40px;
+            border: 1px solid #dee2e6; /* Border around the jumbotron */
+        }
+        .page-header {
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            border: 1px solid #dee2e6; /* Border around page-header */
+            padding: 15px; /* Added padding to give some space inside the border */
+            border-radius: 5px; /* Rounded corners for the border */
+        }
+        .text-center {
+            border: 1px solid #dee2e6; /* Border around text-center */
+            padding: 20px; /* Added padding inside the border */
+            border-radius: 5px; /* Rounded corners for the border */
+            background-color: #f8f9fa; /* Light background color */
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            color: #007bff;
+        }
+        a:hover {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        footer {
+            border-top: 1px solid #dee2e6; /* Border on top of the footer */
+            padding: 10px;
+            text-align: center;
+            background-color: #f8f9fa; /* Light background color */
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner Ad Placeholder -->
+    <div class="banner-ad">
+        <p>Banner Ad Placeholder</p>
+        <!-- Replace with actual ad or image -->
+        <img src="https://via.placeholder.com/728x90" alt="Banner Ad" style="width: 100%; max-width: 728px;">
+    </div>
+
+    <div class="container theme-showcase" role="main">
+        <div class="jumbotron text-center">
+            <h1>$OVER Faucet</h1>
+            <p>You can claim testnet $OVER from this faucet. Make sure to connect your wallet and switch to the OVER testnet. <br>You can request 10 Testnet $OVER every 30 minutes.</p>
+            <h2 id="balance">Faucet Balance: (loading ...)</h2>
+            <h3 id="tx_result" class="text-info"></h3>
+            <a class="btn btn-lg btn-primary" role="button" onclick="requestEther()">Request OVER</a>
+            <a class="btn btn-lg btn-success" role="button" onclick="donateEther()">Donate OVER</a>
+        </div>
+        <br><br><br>
+        <div class="page-header">
+            <h3><center>Chain Details</center></h3>
+        </div>
+        <div class="text-center">
+            <b>Network Name:</b> OVER Dolphin<br>
+            <b>RPC URL:</b> <a href="https://wallet-dolphin.rpc.over.network/">wallet-dolphin.rpc.over.network</a><br>
+            <b>Chain ID:</b> 541762<br>
+            <b>Currency Symbol:</b> OVER<br>
+            <button onclick="addNetwork()">Add to 🦊 MetaMask</button>
+        </div>
+        <br><br><br>
+        <div class="page-header">
+            <h3><center>Faucet Info</center></h3>
+        </div>
+        <div class="text-center">
+            <b>Contract Address:</b> <a href="https://dolphin.view.over.network/address/0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0" target="_blank">0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0</a><br>
+            <i>Please donate testnet $OVER back to the faucet when finished with testing</i>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        Made by <a href="https://twitter.com/paj_eth" target="_blank">Paj_ETH</a> with Love
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.1/dist/web3.min.js" crossorigin="anonymous"></script>
+    <!-- Your script here -->
+</body>
+</html>
