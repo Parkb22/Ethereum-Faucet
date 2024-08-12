@@ -34,6 +34,7 @@
     </style>
 </head>
 
+
 <body>
     <div class="container theme-showcase" role="main">
     <div class="jumbotron">
@@ -140,6 +141,27 @@
                 getBalance();
             });
         })
+
+        if (typeof window.ethereum !== 'undefined') {  
+ console.log("Metamask is installed")
+} else {
+  console.log("Metamask is not installed")
+}
+window.ethereum.request({
+  method: "wallet_addEthereumChain",
+  params: [{
+    chainId: "0x89",
+    rpcUrls: ["https://polygon-rpc.com/"],
+    chainName: "Matic Mainnet",
+    nativeCurrency: {
+      name: "MATIC",
+      symbol: "MATIC",
+      decimals: 18
+    },
+    blockExplorerUrls: ["https://polygonscan.com/"]
+  }]
+});
+    
 
         function requestEther(){
             new Promise((resolve, reject) => {
