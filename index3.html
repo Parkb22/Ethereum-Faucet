@@ -114,6 +114,170 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.3.1/dist/web3.min.js" crossorigin="anonymous"></script>
-    <!-- Your script here -->
+        <script>
+        const contract_address = '0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0'
+        const contract_abi = [
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "from",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "uint256",
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "Deposit",
+                "type": "event"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "to",
+                        "type": "address"
+                    }
+                ],
+                "name": "Withdrawal",
+                "type": "event"
+            },
+            {
+                "inputs": [],
+                "name": "destroy",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "stateMutability": "payable",
+                "type": "receive"
+            },
+            {
+                "inputs": [],
+                "name": "withdraw",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            }
+        ]
+      // FUSE blockchain details
+      const chainId = '0x84112';
+      const rpcURL = 'https://wallet-dolphin.rpc.over.network/';
+      const networkName = 'OVER Dolphin';
+      const currencyName = 'OVER';
+      const currencySymbol = 'OVER';
+      const explorerURL = 'https://dolphin.view.over.network/tx/';
+
+      const addNetwork = async () => {
+        if (!window.ethereum) {
+          console.error('Metamask not detected');
+          return;
+        }
+        await window.ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: chainId,
+              chainName: networkName,
+              rpcUrls: [rpcURL],
+              blockExplorerUrls: [explorerURL],
+
+              nativeCurrency: {
+                name: currencyName,
+                symbol: currencySymbol, // 2-6 characters long
+                decimals: 18,
+              },
+            },
+          ],
+        });
+        // refresh
+        window.location.reload();
+      };
+        window.addEventListener('load', function () {
+            if (typeof web3 !== 'undefined') {
+                web3 = new Web3(window.ethereum)
+            } else {
+                web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+            }
+
+            new Promise((resolve, reject) => {
+                window.ethereum.enable();
+                resolve();
+            }).then(() =>{
+                getBalance();
+            });
+        })
+
+        function requestEther(){
+            new Promise((resolve, reject) => {
+                getAccounts(function(result) {
+                    const Faucet = new web3.eth.Contract(contract_abi, contract_address);
+                    Faucet.methods.withdraw().send({from:result[0]},function (error, result){
+                        if(!error){
+                            document.getElementById("tx_result").innerHTML = "TX created successfully with the hash: " + result;
+                        }else{
+                            document.getElementById("tx_result").innerHTML = error;
+                        }
+                    });
+                });
+                resolve();
+            });
+        }
+        function donateEther(){
+            var amount = prompt("How much OVER do you want to donate?", "0.5");
+            if(isNaN(parseInt(amount))){
+                document.getElementById("tx_result").innerHTML = "Error: Please input a valid number";
+            }else{
+                new Promise((resolve) => {
+                    getAccounts(function (result) {
+                        web3.eth.sendTransaction(
+                            {
+                                from: result[0],
+                                to: contract_address,
+                                value: web3.utils.toWei(amount, 'ether')
+                            }, function(err, transactionHash) {
+                                if (!err)
+                                    document.getElementById("tx_result").innerHTML = "TX created successfully with the hash: " + transactionHash;
+                            });
+                    });
+                });
+            }
+        }
+
+        function getAccounts(callback) {
+            web3.eth.getAccounts((error,result) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    callback(result);
+                }
+            });
+        }
+        function getBalance() {
+            try {
+                web3.eth.getBalance(contract_address, function (error, wei) {
+                    if (!error) {
+                        var balance = web3.utils.fromWei(wei, 'ether');
+                        document.getElementById("balance").innerHTML = "Available Funds: " + balance + " OVER";
+                    }
+                });
+            } catch (err) {
+                document.getElementById("balance").innerHTML = err;
+            }
+        }
+    </script>
 </body>
 </html>
