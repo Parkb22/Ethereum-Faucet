@@ -148,18 +148,20 @@ window.addEventListener('load', async function () {
     }
 });
 
-       async function requestEther() {
+async function requestEther() {
     try {
-        const accounts = await web3.eth.getAccounts(); // Get the user's accounts
+        const accounts = await web3.eth.getAccounts();
         const Faucet = new web3.eth.Contract(contract_abi, contract_address);
 
-        // Send the withdrawal transaction
-        const txHash = await Faucet.methods.withdraw().send({ from: accounts[0] });
-
-        // Display the transaction hash
-        document.getElementById("tx_result").innerHTML = "TX created successfully with the hash: " + txHash.transactionHash;
+        // Check if the withdraw method is available
+        if (Faucet.methods.withdraw) {
+            const txReceipt = await Faucet.methods.withdraw().send({ from: accounts[0] });
+            document.getElementById("tx_result").innerHTML = "TX created successfully with the hash: " + txReceipt.transactionHash;
+        } else {
+            console.error("Withdraw method is not available in the contract.");
+            document.getElementById("tx_result").innerHTML = "Error: Withdraw method is not available.";
+        }
     } catch (error) {
-        // Display any errors
         document.getElementById("tx_result").innerHTML = error.message;
     }
 }
