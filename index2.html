@@ -133,6 +133,20 @@
                 getBalance();
             });
         });
+window.addEventListener('load', async function () {
+    if (typeof web3 !== 'undefined') {
+        web3 = new Web3(window.ethereum);
+    } else {
+        web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+    }
+
+    try {
+        await window.ethereum.enable(); // Request account access if needed
+        getBalance(); // Fetch and display the faucet balance
+    } catch (error) {
+        console.error('User denied account access...', error);
+    }
+});
 
        async function requestEther() {
     try {
