@@ -72,6 +72,7 @@
             cursor: pointer;
             box-shadow: 0px 0px 15px #ff00ff;
             transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+            display: inline-block; /* Ensure buttons are inline elements */
         }
 
         button:hover {
@@ -105,6 +106,22 @@
         .footer-spacing {
             margin-bottom: 40px;
         }
+
+        /* Centering the banner */
+        .banner-ad {
+            background-color: #1a1a1a;
+            border: 2px solid #ff00ff;
+            padding: 20px;
+            text-align: center;
+            margin: 0 auto 20px auto;
+            max-width: 728px; /* Set a max-width to match the image width */
+            box-shadow: 0px 0px 10px #ff00ff;
+        }
+
+        .banner-ad img {
+            max-width: 100%; /* Ensure the image is responsive */
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -112,7 +129,7 @@
     <div class="banner-ad glass-effect">
         <p class="neon-text">Advertise <a href="https://twitter.com/paj_eth">Here</a></p>
         <!-- Replace with actual ad or image -->
-        <img src="https://lh5.googleusercontent.com/proxy/B30pPm77HaR-V7nrSJp4VLuqTburYEMVYWooXSaFzRNHbBcog0yGUlHUYiHn9_ou5DXAVfjTQxGBfl1jju31U0mI7jAZ2FOErMIF-8UWMkt6mAedSXnXuC3W" alt="Banner Ad" style="width: 100%; max-width: 728px;">
+        <img src="https://lh5.googleusercontent.com/proxy/B30pPm77HaR-V7nrSJp4VLuqTburYEMVYWooXSaFzRNHbBcog0yGUlHUYiHn9_ou5DXAVfjTQxGBfl1jju31U0mI7jAZ2FOErMIF-8UWMkt6mAedSXnXuC3W" alt="Banner Ad">
     </div>
 
     <div class="container theme-showcase" role="main">
@@ -127,8 +144,8 @@
             <h3 id="tx_result" class="text-info"></h3>
             <br>
             <br>
-            <a class="btn btn-lg" role="button" onclick="requestEther()">Request OVER</a>
-            <a class="btn btn-lg" role="button" onclick="donateEther()">Donate OVER</a>
+            <a class="btn btn-lg" role="button" style="background-color: #00ffff; color: #0d0d0d;" onclick="requestEther()">Request OVER</a>
+            <a class="btn btn-lg" role="button" style="background-color: #ff00ff; color: #0d0d0d;" onclick="donateEther()">Donate OVER</a>
         </div>
 
         <div class="page-header glass-effect">
