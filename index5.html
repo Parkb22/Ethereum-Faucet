@@ -137,216 +137,175 @@
        <a href="https://overstake.io"> <img src="https://s10.gifyu.com/images/SDlah.gif" alt="Banner Ad"></a>
     </div>
 
-  <div class="container theme-showcase" role="main">
-    <div class="glass-effect text-center">
-        <h3 class="neon-text">Faucet Info</h3>
-        <p id="faucetBalance" style="color: #ff00ff;">Faucet Balance: - ETH</p>
-        <p id="withdrawStatus" style="color: #00ffff;">You are eligible to withdraw: -</p>
-        <button id="withdrawButton" class="btn btn-lg" style="background-color: #00ffff; color: #0d0d0d;">Withdraw 0.1 ETH</button>
-        <p id="txResult" style="color: #ff00ff;"></p>
+    <div class="container theme-showcase" role="main">
+        <div class="glass-effect text-center">
+            <h3 class="neon-text">Faucet Info</h3>
+            <p id="faucetBalance" style="color: #ff00ff;">Faucet Balance: - ETH</p>
+            <p id="withdrawStatus" style="color: #00ffff;">You are eligible to withdraw: -</p>
+            <button id="withdrawButton" class="btn btn-lg" style="background-color: #00ffff; color: #0d0d0d;">Withdraw 0.1 ETH</button>
+            <p id="txResult" style="color: #ff00ff;"></p>
+        </div>
     </div>
-</div>
-            <br>
-          
-  
 
+    <div class="page-header glass-effect">
+        <h3 class="neon-text" style="text-align: center;">Chain Details</h3>
+    </div>
+    <div class="text-center glass-effect">
+        <b style="color: #ff00ff;">Network Name:</b> <span style="color: #00ffff;">OVER Dolphin</span><br>
+        <b style="color: #ff00ff;">RPC URL:</b> <span style="color: #00ffff;">wallet-dolphin.rpc.over.network</span><br>
+        <b style="color: #ff00ff;">Chain ID:</b> <span style="color: #00ffff;">541762</span><br>
+        <b style="color: #ff00ff;">Currency Symbol:</b> <span style="color: #00ffff;">OVER</span><br><br>
+        <button onclick="addNetwork()"><b>Add to 🦊 MetaMask</b></button>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.1/dist/web3.min.js"></script>
-    <script>
-        async function connectWallet() {
-            if (window.ethereum) {
-                try {
-                    // Request account access
-                    await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    const web3 = new Web3(window.ethereum);
-
-                    // Get the user's account
-                    const accounts = await web3.eth.getAccounts();
-                    const account = accounts[0];
-
-                    // Display the user's native token balance (e.g., OVER)
-                    const balance = await web3.eth.getBalance(account);
-                    const balanceInEther = web3.utils.fromWei(balance, 'ether'); // Convert Wei to Ether (or OVER in your case)
-
-                    document.getElementById("userBalance").innerText = `Balance: ${balanceInEther} OVER`;
-                } catch (error) {
-                    console.error("User denied account access or error occurred", error);
-                    document.getElementById("userBalance").innerText = "Error fetching balance";
-                }
-            } else {
-                console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
-                document.getElementById("userBalance").innerText = "Please install MetaMask!";
-            }
-        }
-
-        document.getElementById("connectButton").addEventListener("click", connectWallet);
-    </script>
-
-            <br>
-            <a class="btn btn-lg" role="button" style="background-color: #00ffff; color: #0d0d0d;" onclick="requestEther()">Request OVER</a>
-            <a class="btn btn-lg" role="button" style="background-color: #ff00ff; color: #0d0d0d;" onclick="donateEther()">Donate OVER</a>
-        </div>
-
-        <div class="page-header glass-effect">
-            <h3 class="neon-text" style="text-align: center;">Chain Details</h3>
-        </div>
-        <div class="text-center glass-effect">
-            <b style="color: #ff00ff;">Network Name:</b> <span style="color: #00ffff;">OVER Dolphin</span><br>
-            <b style="color: #ff00ff;">RPC URL:</b> <span style="color: #00ffff;">wallet-dolphin.rpc.over.network</span><br>
-            <b style="color: #ff00ff;">Chain ID:</b> <span style="color: #00ffff;">541762</span><br>
-            <b style="color: #ff00ff;">Currency Symbol:</b> <span style="color: #00ffff;">OVER</span><br><br>
-            <button onclick="addNetwork()"><b>Add to 🦊 MetaMask</b></button>
-        </div>
-
-        <div class="page-header glass-effect">
-            <h3 class="neon-text" style="text-align: center;">Faucet Info</h3>
-        </div>
-        <div class="text-center glass-effect footer-spacing">
-            <b style="color: #ff00ff;">Contract Address:</b> <a href="https://dolphin.view.over.network/address/0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0" target="_blank" style="color: #00ffff;">0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0</a><br><br>
-            <i style="color: #00ffff;">Don't be greedy❤️❤️ Please donate testnet $OVER back to the faucet when finished with testing ❤️</i>
-        </div>
+    <div class="page-header glass-effect">
+        <h3 class="neon-text" style="text-align: center;">Faucet Info</h3>
+    </div>
+    <div class="text-center glass-effect footer-spacing">
+        <b style="color: #ff00ff;">Contract Address:</b> <a href="https://dolphin.view.over.network/address/0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0" target="_blank" style="color: #00ffff;">0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0</a><br><br>
+        <i style="color: #00ffff;">Don't be greedy❤️❤️ Please donate testnet $OVER back to the faucet when finished with testing ❤️</i>
     </div>
 
     <!-- Footer -->
-  <footer>
+    <footer>
         Made by <a href="https://twitter.com/paj_eth" target="_blank" style="color: #ff00ff;">Paj_ETH</a> with Love ❤️❤️
         <br><br>
     </footer>
 
-    
     <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.3.1/dist/web3.min.js" crossorigin="anonymous"></script>
   
     <!-- Your script here -->
-<script>
-    // Faucet smart contract address and ABI
-    const faucetAddress = '0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0'; // Replace with the actual contract address
-    const faucetABI = [
-        {
-            "inputs": [],
-            "name": "withdraw",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "destroy",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "stateMutability": "payable",
-            "type": "receive"
-        },
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": true,
-                    "internalType": "address",
-                    "name": "to",
-                    "type": "address"
-                }
-            ],
-            "name": "Withdrawal",
-            "type": "event"
-        },
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": true,
-                    "internalType": "address",
-                    "name": "from",
-                    "type": "address"
-                },
-                {
-                    "indexed": false,
-                    "internalType": "uint256",
-                    "name": "amount",
-                    "type": "uint256"
-                }
-            ],
-            "name": "Deposit",
-            "type": "event"
-        }
-    ];
-
-    let web3;
-    let faucetContract;
-    let userAccount;
-
-    async function init() {
-        if (window.ethereum) {
-            try {
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
-                web3 = new Web3(window.ethereum);
-
-                // Set up contract instance
-                faucetContract = new web3.eth.Contract(faucetABI, faucetAddress);
-                
-                // Get the user's account
-                const accounts = await web3.eth.getAccounts();
-                userAccount = accounts[0];
-
-                // Display the faucet balance
-                updateFaucetBalance();
-
-                // Check if the user is eligible to withdraw
-                checkWithdrawalStatus();
-
-                // Set up the withdraw button click event
-                document.getElementById("withdrawButton").addEventListener("click", withdrawFunds);
-            } catch (error) {
-                console.error("User denied account access or error occurred", error);
-                document.getElementById("withdrawStatus").innerText = "Error: Could not connect to wallet.";
+    <script>
+        // Faucet smart contract address and ABI
+        const faucetAddress = '0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0'; // Replace with the actual contract address
+        const faucetABI = [
+            {
+                "inputs": [],
+                "name": "withdraw",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "destroy",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "stateMutability": "payable",
+                "type": "receive"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "to",
+                        "type": "address"
+                    }
+                ],
+                "name": "Withdrawal",
+                "type": "event"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "from",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "uint256",
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "Deposit",
+                "type": "event"
             }
-        } else {
-            console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
-            document.getElementById("withdrawStatus").innerText = "Please install MetaMask!";
+        ];
+
+        let web3;
+        let faucetContract;
+        let userAccount;
+
+        async function init() {
+            if (window.ethereum) {
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    web3 = new Web3(window.ethereum);
+
+                    // Set up contract instance
+                    faucetContract = new web3.eth.Contract(faucetABI, faucetAddress);
+                    
+                    // Get the user's account
+                    const accounts = await web3.eth.getAccounts();
+                    userAccount = accounts[0];
+
+                    // Display the faucet balance
+                    updateFaucetBalance();
+
+                    // Check if the user is eligible to withdraw
+                    checkWithdrawalStatus();
+
+                    // Set up the withdraw button click event
+                    document.getElementById("withdrawButton").addEventListener("click", withdrawFunds);
+                } catch (error) {
+                    console.error("User denied account access or error occurred", error);
+                    document.getElementById("withdrawStatus").innerText = "Error: Could not connect to wallet.";
+                }
+            } else {
+                console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+                document.getElementById("withdrawStatus").innerText = "Please install MetaMask!";
+            }
         }
-    }
 
-    async function updateFaucetBalance() {
-        const balanceWei = await web3.eth.getBalance(faucetAddress);
-        const balanceEth = web3.utils.fromWei(balanceWei, 'ether');
-        document.getElementById("faucetBalance").innerText = `Faucet Balance: ${balanceEth} ETH`;
-    }
-
-    async function checkWithdrawalStatus() {
-        const lastWithdrawal = await faucetContract.methods.timeouts(userAccount).call();
-        const currentTime = Math.floor(Date.now() / 1000);
-        const eligibility = (currentTime - lastWithdrawal) >= 1800; // 1800 seconds = 30 minutes
-
-        if (eligibility) {
-            document.getElementById("withdrawStatus").innerText = "You are eligible to withdraw.";
-            document.getElementById("withdrawButton").disabled = false;
-        } else {
-            const minutesLeft = Math.ceil((1800 - (currentTime - lastWithdrawal)) / 60);
-            document.getElementById("withdrawStatus").innerText = `You can withdraw in ${minutesLeft} minute(s).`;
-            document.getElementById("withdrawButton").disabled = true;
+        async function updateFaucetBalance() {
+            const balanceWei = await web3.eth.getBalance(faucetAddress);
+            const balanceEth = web3.utils.fromWei(balanceWei, 'ether');
+            document.getElementById("faucetBalance").innerText = `Faucet Balance: ${balanceEth} ETH`;
         }
-    }
 
-    async function withdrawFunds() {
-        try {
-            document.getElementById("txResult").innerText = "Processing transaction...";
-            await faucetContract.methods.withdraw().send({ from: userAccount });
-            document.getElementById("txResult").innerText = "Transaction successful! You have withdrawn 0.1 ETH.";
-            updateFaucetBalance();
-            checkWithdrawalStatus();
-        } catch (error) {
-            console.error("Error processing transaction", error);
-            document.getElementById("txResult").innerText = "Transaction failed!";
+        async function checkWithdrawalStatus() {
+            const lastWithdrawal = await faucetContract.methods.timeouts(userAccount).call();
+            const currentTime = Math.floor(Date.now() / 1000);
+            const eligibility = (currentTime - lastWithdrawal) >= 1800; // 1800 seconds = 30 minutes
+
+            if (eligibility) {
+                document.getElementById("withdrawStatus").innerText = "You are eligible to withdraw.";
+                document.getElementById("withdrawButton").disabled = false;
+            } else {
+                const minutesLeft = Math.ceil((1800 - (currentTime - lastWithdrawal)) / 60);
+                document.getElementById("withdrawStatus").innerText = `You can withdraw in ${minutesLeft} minute(s).`;
+                document.getElementById("withdrawButton").disabled = true;
+            }
         }
-    }
 
-    window.addEventListener('load', init);
-</script>
+        async function withdrawFunds() {
+            try {
+                document.getElementById("txResult").innerText = "Processing transaction...";
+                await faucetContract.methods.withdraw().send({ from: userAccount });
+                document.getElementById("txResult").innerText = "Transaction successful! You have withdrawn 0.1 ETH.";
+                updateFaucetBalance();
+                checkWithdrawalStatus();
+            } catch (error) {
+                console.error("Error processing transaction", error);
+                document.getElementById("txResult").innerText = "Transaction failed!";
+            }
+        }
+
+        window.addEventListener('load', init);
+    </script>
 </body>
 </html>
+
