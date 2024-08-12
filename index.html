@@ -134,7 +134,7 @@
     <div class="banner-ad glass-effect">
         <p class="neon-text">Advertise <a href="https://twitter.com/paj_eth">Here</a></p>
         <!-- Replace with actual ad or image -->
-        <img src="https://lh5.googleusercontent.com/proxy/B30pPm77HaR-V7nrSJp4VLuqTburYEMVYWooXSaFzRNHbBcog0yGUlHUYiHn9_ou5DXAVfjTQxGBfl1jju31U0mI7jAZ2FOErMIF-8UWMkt6mAedSXnXuC3W" alt="Banner Ad">
+       <a href="https://overstake.io"> <img src="https://s10.gifyu.com/images/SDlah.gif" alt="Banner Ad"></a>
     </div>
 
     <div class="container theme-showcase" role="main">
@@ -169,7 +169,6 @@
         </div>
         <div class="text-center glass-effect footer-spacing">
             <b style="color: #ff00ff;">Contract Address:</b> <a href="https://dolphin.view.over.network/address/0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0" target="_blank" style="color: #00ffff;">0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0</a><br><br>
-            <div id="totalDistributed" style="color: #ff00ff; margin-top: 10px;">Calculating total OVER distributed...</div><br><br>
             <i style="color: #00ffff;">Don't be greedy❤️❤️ Please donate testnet $OVER back to the faucet when finished with testing ❤️</i>
         </div>
     </div>
@@ -187,7 +186,7 @@
 
     <!-- Your script here -->
 
-    <script>
+ <script>
         const contract_address = '0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0'
         const contract_abi = [
             {
@@ -246,7 +245,7 @@
                 "type": "constructor"
             }
         ]
-      // FUSE blockchain details
+     // FUSE blockchain details
       const chainId = '0x84442';
       const rpcURL = 'https://wallet-dolphin.rpc.over.network/';
       const networkName = 'OVER Dolphin';
@@ -294,6 +293,7 @@
             });
         })
 
+
         function requestEther(){
             new Promise((resolve, reject) => {
                 getAccounts(function(result) {
@@ -329,8 +329,28 @@
                 });
             }
         }
- 
-    });
-</script>
+
+        function getAccounts(callback) {
+            web3.eth.getAccounts((error,result) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    callback(result);
+                }
+            });
+        }
+        function getBalance() {
+            try {
+                web3.eth.getBalance(contract_address, function (error, wei) {
+                    if (!error) {
+                        var balance = web3.utils.fromWei(wei, 'ether');
+                        document.getElementById("balance").innerHTML = "Available Funds: " + balance + " OVER";
+                    }
+                });
+            } catch (err) {
+                document.getElementById("balance").innerHTML = err;
+            }
+        }
+    </script>
 </body>
 </html>
