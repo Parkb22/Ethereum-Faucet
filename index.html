@@ -8,7 +8,7 @@
     <meta name="author" content="Jacob Suchorabski">
     <link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/navbar/">
 
-    <title>Ropsten Faucet</title>
+    <title>Over Testnet Faucet</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -37,17 +37,17 @@
 <body>
     <div class="container theme-showcase" role="main">
     <div class="jumbotron">
-        <h1>Ethereum Faucet</h1>
-        <p>You can withdraw Ether from this Ropsten Faucet. Make sure to connect your wallet and switch to the Ropsten Testnet.</p>
+        <h1>OVER Faucet</h1>
+        <p>You can claim testnet OVER from this faucet. Make sure to connect your wallet and switch to the OVER testnet.</p>
         <p>
-            <a class="btn btn-lg btn-primary" role="button" onclick="requestEther()">Request Ether</a>
-            <a class="btn btn-lg btn-success" role="button" onclick="donateEther()">Donate Ether</a>
+            <a class="btn btn-lg btn-primary" role="button" onclick="requestEther()">Request OVER</a>
+            <a class="btn btn-lg btn-success" role="button" onclick="donateEther()">Donate OVER</a>
         </p>
     </div>
 
     <div class="page-header"><h2>Faucet Data</h2></div>
     <div>
-        <h3>Contract Address: <a href="https://ropsten.etherscan.io/address/0x5194d3d2d77585ff89a2823f77c191a93d2f6416" target="_blank">0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0</a></h3>
+        <h3>Contract Address: <a href="https://dolphin.view.over.network/address/0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0" target="_blank">0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0</a></h3>
         <h3 id="balance">Available Funds: (loading ...)</h3>
         <h3 id="tx_result" class="text-info"></h3>
     </div>
@@ -148,7 +148,7 @@
             });
         }
         function donateEther(){
-            var amount = prompt("How much Ether do you want to donate?", "0.5");
+            var amount = prompt("How much OVER do you want to donate?", "0.5");
             if(isNaN(parseInt(amount))){
                 document.getElementById("tx_result").innerHTML = "Error: Please input a valid number";
             }else{
@@ -182,7 +182,7 @@
                 web3.eth.getBalance(contract_address, function (error, wei) {
                     if (!error) {
                         var balance = web3.utils.fromWei(wei, 'ether');
-                        document.getElementById("balance").innerHTML = "Available Funds: " + balance + " Ether";
+                        document.getElementById("balance").innerHTML = "Available Funds: " + balance + " OVER";
                     }
                 });
             } catch (err) {
