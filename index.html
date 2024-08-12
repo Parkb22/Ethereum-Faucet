@@ -52,6 +52,7 @@
         <h3>RPC URL : <a href="https://wallet-dolphin.rpc.over.network/">wallet-dolphin.rpc.over.network</a></h3>
         <h3>Chain ID: 541762</h3>
         <h3>Currency Symbol: OVER</h3>
+        <h3><button class="button2" onclick="addOVERnetwork()">Add to MetaMask</button></h3>
     </div>
 <br><br><br><br>
     <div class="page-header"><h2>Faucet Data</h2></div>
@@ -142,27 +143,26 @@
             });
         })
 
-        if (typeof window.ethereum !== 'undefined') {  
- console.log("Metamask is installed")
-} else {
-  console.log("Metamask is not installed")
-}
-window.ethereum.request({
-  method: "wallet_addEthereumChain",
-  params: [{
-    chainId: "541762",
-    rpcUrls: ["https://wallet-dolphin.rpc.over.network/"],
-    chainName: "OVER Dolphin",
-    nativeCurrency: {
-      name: "OVER",
-      symbol: "OVER",
-      decimals: 18
-    },
-    blockExplorerUrls: ["https://dolphin.view.over.network/"]
-  }]
-});
-    
 
+async function addOVERnetwork() {
+  try {
+    const result = await window.ethereum.request({
+      method: "wallet_addEthereumChain",
+      params: [{
+        chainId: "541762",
+        rpcUrls: ["https://wallet-dolphin.rpc.over.network/"],
+        chainName: "OVER Dolphin",
+        nativeCurrency: {
+          name: "OVER",
+          symbol: "OVER",
+          decimals: 18
+        },
+        blockExplorerUrls: ["https://dolphin.view.over.network/"]
+      }]
+    });
+  } catch (error){
+    console.log(error)
+  }
         function requestEther(){
             new Promise((resolve, reject) => {
                 getAccounts(function(result) {
