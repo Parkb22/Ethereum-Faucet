@@ -144,8 +144,8 @@
                 "type": "constructor"
             }
         ]
-      // FUSE blockchain details
-      const chainId = '0x84442';
+     // FUSE blockchain details
+      const chainId = '0x84112';
       const rpcURL = 'https://wallet-dolphin.rpc.over.network/';
       const networkName = 'OVER Dolphin';
       const currencyName = 'OVER';
@@ -161,7 +161,7 @@
           method: 'wallet_addEthereumChain',
           params: [
             {
-              chainId: `0x${chainId.toString(16)}`,
+              chainId: chainId,
               chainName: networkName,
               rpcUrls: [rpcURL],
               blockExplorerUrls: [explorerURL],
@@ -191,6 +191,7 @@
                 getBalance();
             });
         })
+
 
         function requestEther(){
             new Promise((resolve, reject) => {
