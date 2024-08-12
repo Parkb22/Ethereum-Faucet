@@ -13,6 +13,7 @@
             padding-top: 70px;
             padding-bottom: 30px;
             font-size: 0.9rem; /* Smaller font size for a more high-tech feel */
+            position: relative;
         }
         .banner-ad {
             background-color: #f8f9fa;
@@ -20,6 +21,21 @@
             padding: 20px;
             text-align: center;
             margin-bottom: 20px; /* Space between ad and main content */
+        }
+        .side-banner {
+            width: 200px;
+            height: 600px; /* Adjust height as needed */
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            position: fixed;
+            top: 100px; /* Adjust based on your design */
+            z-index: 1000;
+        }
+        .side-banner.left {
+            left: 0;
+        }
+        .side-banner.right {
+            right: 0;
         }
         .jumbotron {
             background-color: #f8f9fa;
@@ -72,11 +88,23 @@
     </style>
 </head>
 <body>
+    <!-- Side Banners -->
+    <div class="side-banner left">
+        <p>Left Side Ad</p>
+        <!-- Replace with actual ad or image -->
+        <img src="https://via.placeholder.com/200x600" alt="Left Side Ad" style="width: 100%; height: auto;">
+    </div>
+    <div class="side-banner right">
+        <p>Right Side Ad</p>
+        <!-- Replace with actual ad or image -->
+        <img src="https://via.placeholder.com/200x600" alt="Right Side Ad" style="width: 100%; height: auto;">
+    </div>
+
     <!-- Banner Ad Placeholder -->
     <div class="banner-ad">
-        <p>Advertise <a href="https://twitter.com/paj_eth">Here</a></p>
+        <p>Banner Ad Placeholder</p>
         <!-- Replace with actual ad or image -->
-        <img src="https://lh5.googleusercontent.com/proxy/B30pPm77HaR-V7nrSJp4VLuqTburYEMVYWooXSaFzRNHbBcog0yGUlHUYiHn9_ou5DXAVfjTQxGBfl1jju31U0mI7jAZ2FOErMIF-8UWMkt6mAedSXnXuC3W" alt="Banner Ad" style="width: 100%; max-width: 728px;">
+        <img src="https://via.placeholder.com/728x90" alt="Banner Ad" style="width: 100%; max-width: 728px;">
     </div>
 
     <div class="container theme-showcase" role="main">
@@ -86,7 +114,7 @@
             <h2 id="balance">Faucet Balance: (loading ...)</h2>
             <h3 id="tx_result" class="text-info"></h3>
             <a class="btn btn-lg btn-primary" role="button" onclick="requestEther()">Request OVER</a>
-            <a class="btn btn-lg btn-success" role="button" onclick="donateEther()">Donate OVER</a><br><br>
+            <a class="btn btn-lg btn-success" role="button" onclick="donateEther()">Donate OVER</a>
         </div>
         <br><br><br>
         <div class="page-header">
