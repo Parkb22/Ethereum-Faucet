@@ -144,36 +144,38 @@
                 "type": "constructor"
             }
         ]
-      // FUSE blockchain details
-      const chainId = '541762';
-      const rpcURL = 'https://wallet-dolphin.rpc.over.network/';
-      const networkName = 'OVER Dolphin';
-      const currencyName = 'OVER';
-      const currencySymbol = 'OVER';
-      const explorerURL = 'https://dolphin.view.over.network/tx/';
+    const addNetwork = async () => {
+  if (!window.ethereum) {
+    console.error('MetaMask not detected');
+    document.getElementById("tx_result").innerHTML = "MetaMask not detected. Please install MetaMask.";
+    return;
+  }
 
-      const addNetwork = async () => {
-        if (!window.ethereum) {
-          console.error('Metamask not detected');
-          return;
+  try {
+    await window.ethereum.request({
+      method: 'wallet_addEthereumChain',
+      params: [
+        {
+          chainId: '0x83be2', // Hexadecimal Chain ID for 541762
+          chainName: 'OVER Dolphin',
+          rpcUrls: ['https://wallet-dolphin.rpc.over.network/'],
+          nativeCurrency: {
+            name: 'OVER',
+            symbol: 'OVER',
+            decimals: 18
+          },
+          blockExplorerUrls: ['https://dolphin.view.over.network/']
         }
-        await window.ethereum.request({
-          method: 'wallet_addEthereumChain',
-          params: [
-            {
-              chainId: chainId,
-              chainName: networkName,
-              rpcUrls: [rpcURL],
-              blockExplorerUrls: [explorerURL],
+      ]
+    });
 
-              nativeCurrency: {
-                name: currencyName,
-                symbol: currencySymbol, // 2-6 characters long
-                decimals: 18,
-              },
-            },
-          ],
-        });
+    // Notify the user
+    document.getElementById("tx_result").innerHTML = "Network added to MetaMask.";
+  } catch (error) {
+    console.error(error);
+    document.getElementById("tx_result").innerHTML = "Failed to add network: " + error.message;
+  }
+};
         // refresh
         window.location.reload();
       };
