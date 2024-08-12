@@ -85,7 +85,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.3.1/dist/web3.min.js" crossorigin="anonymous"></script>
 
-    <script>
+ <script>
         const contract_address = '0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0'
         const contract_abi = [
             {
@@ -144,38 +144,36 @@
                 "type": "constructor"
             }
         ]
-    const addNetwork = async () => {
-  if (!window.ethereum) {
-    console.error('MetaMask not detected');
-    document.getElementById("tx_result").innerHTML = "MetaMask not detected. Please install MetaMask.";
-    return;
-  }
+      // FUSE blockchain details
+      const chainId = '0x84112';
+      const rpcURL = 'https://wallet-dolphin.rpc.over.network/';
+      const networkName = 'OVER Dolphin';
+      const currencyName = 'OVER';
+      const currencySymbol = 'OVER';
+      const explorerURL = 'https://dolphin.view.over.network/tx/';
 
-  try {
-    await window.ethereum.request({
-      method: 'wallet_addEthereumChain',
-      params: [
-        {
-          chainId: '0x83be2', // Hexadecimal Chain ID for 541762
-          chainName: 'OVER Dolphin',
-          rpcUrls: ['https://wallet-dolphin.rpc.over.network/'],
-          nativeCurrency: {
-            name: 'OVER',
-            symbol: 'OVER',
-            decimals: 18
-          },
-          blockExplorerUrls: ['https://dolphin.view.over.network/']
+      const addNetwork = async () => {
+        if (!window.ethereum) {
+          console.error('Metamask not detected');
+          return;
         }
-      ]
-    });
+        await window.ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: chainId,
+              chainName: networkName,
+              rpcUrls: [rpcURL],
+              blockExplorerUrls: [explorerURL],
 
-    // Notify the user
-    document.getElementById("tx_result").innerHTML = "Network added to MetaMask.";
-  } catch (error) {
-    console.error(error);
-    document.getElementById("tx_result").innerHTML = "Failed to add network: " + error.message;
-  }
-};
+              nativeCurrency: {
+                name: currencyName,
+                symbol: currencySymbol, // 2-6 characters long
+                decimals: 18,
+              },
+            },
+          ],
+        });
         // refresh
         window.location.reload();
       };
