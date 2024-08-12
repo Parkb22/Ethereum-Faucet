@@ -184,10 +184,10 @@
         <div class="page-header glass-effect">
             <h3 class="neon-text" style="text-align: center;">Faucet Info</h3>
         </div>
-        <div class="text-center glass-effect footer-spacing">
-            <b style="color: #ff00ff;">Contract Address:</b> <a href="https://dolphin.view.over.network/address/0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0" target="_blank" style="color: #00ffff;">0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0</a><br><br><br>
-            <i style="color: #00ffff;">Don't be greedy❤️❤️ Please donate testnet $OVER back to the faucet when finished with testing ❤️</i>
-        </div>
+<div class="text-center glass-effect footer-spacing">
+    <b style="color: #ff00ff;">Contract Address:</b> <a href="https://dolphin.view.over.network/address/0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0" target="_blank" style="color: #00ffff;">0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0</a><br><br>
+    <div id="totalDistributed" style="color: #ff00ff; margin-top: 10px;">Calculating total OVER distributed...</div><br><br>
+    <i style="color: #00ffff;">Don't be greedy❤️❤️ Please donate testnet $OVER back to the faucet when finished with testing ❤️</i>
     </div>
 
     <!-- Footer -->
@@ -344,7 +344,56 @@
                 });
             }
         }
+ // Address of the contract
+    const contract_address = '0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0';
 
+    // ABI of the contract (minimal ABI to interact with contract events)
+    const contract_abi = [
+        {
+            "anonymous": false,
+            "inputs": [
+                {"indexed": true, "internalType": "address", "name": "from", "type": "address"},
+                {"indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256"}
+            ],
+            "name": "Deposit",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {"indexed": true, "internalType": "address", "name": "to", "type": "address"}
+            ],
+            "name": "Withdrawal",
+            "type": "event"
+        }
+    ];
+
+    async function fetchTotalDistributed() {
+        try {
+            const web3 = new Web3(window.ethereum || new Web3.providers.HttpProvider('https://wallet-dolphin.rpc.over.network/'));
+            const contract = new web3.eth.Contract(contract_abi, contract_address);
+
+            // Get the number of 'Withdrawal' events (each event represents a withdrawal of 10 OVER)
+            const events = await contract.getPastEvents('Withdrawal', {
+                fromBlock: 0,
+                toBlock: 'latest'
+            });
+
+            const transactionCount = events.length;
+            const totalDistributed = transactionCount * 10; // Assuming each transaction gives out 10 OVER
+
+            document.getElementById("totalDistributed").innerHTML = `Total OVER Distributed: ${totalDistributed} OVER`;
+        } catch (error) {
+            console.error("Error fetching total distributed:", error);
+            document.getElementById("totalDistributed").innerHTML = "Error calculating total OVER distributed.";
+        }
+    }
+
+    window.addEventListener('load', function () {
+        if (typeof web3 !== 'undefined') {
+            fetchTotalDistributed();
+        }
+    });
         function getAccounts(callback) {
             web3.eth.getAccounts((error,result) => {
                 if (error) {
