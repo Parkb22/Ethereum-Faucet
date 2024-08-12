@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,139 +11,86 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
         body {
             padding-top: 70px;
             padding-bottom: 30px;
-            background-color: #121212;
-            color: #e0e0e0;
+            font-size: 0.9rem; /* Smaller font size for a more high-tech feel */
+        }
+        .jumbotron {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 40px;
+        }
+        h1, h2, h3 {
             font-family: 'Roboto', sans-serif;
         }
-
-        .jumbotron {
-            background-color: #1e1e1e;
-            color: #ffffff;
-            border-radius: 15px;
-            padding: 30px;
+        .theme-showcase > p > .btn {
+            margin: 5px 0;
         }
-
-        .btn-primary {
-            background-color: #6200ea;
-            border: none;
-            border-radius: 50px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease-in-out, background-color 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.05);
-            background-color: #3700b3;
-        }
-
-        .btn-success {
-            background-color: #03dac6;
-            border: none;
-            border-radius: 50px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease-in-out, background-color 0.3s ease;
-        }
-
-        .btn-success:hover {
-            transform: scale(1.05);
-            background-color: #018786;
-        }
-
-        h2,
-        h3 {
-            color: #bb86fc;
-            letter-spacing: 1px;
-        }
-
-        a {
-            color: #bb86fc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #3700b3;
-            text-decoration: underline;
-        }
-
         .page-header {
-            border-bottom: 1px solid #bb86fc;
-            margin-top: 40px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
-
-        .spinner-border {
-            margin: 0 auto;
-            display: block;
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
         }
-
-        footer {
-            background-color: #1e1e1e;
-            padding: 20px;
-            text-align: center;
-            color: #bb86fc;
-            margin-top: 50px;
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            color: #007bff;
+        }
+        a:hover {
+            color: #0056b3;
+            text-decoration: none;
         }
     </style>
 </head>
 
 <body>
     <div class="container theme-showcase" role="main">
-        <div class="jumbotron">
-            <h1 class="text-center">$OVER Faucet</h1>
-            <p class="text-center">You can claim testnet $OVER from this faucet. Make sure to connect your wallet and switch to the OVER testnet.
-                <br>You can request 10 Testnet $OVER every 30 minutes.</p>
-            <div class="text-center">
-                <h2 id="balance">Faucet Balance: <div class="spinner-border text-primary" role="status" id="loading-spinner"></div></h2>
-                <br>
-                <h3 id="tx_result" class="text-info"></h3>
-                <br>
-                <a class="btn btn-lg btn-primary" role="button" onclick="requestEther()">Request OVER</a>
-                <a class="btn btn-lg btn-success" role="button" onclick="donateEther()">Donate OVER</a>
-            </div>
+        <div class="jumbotron text-center">
+            <h1>$OVER Faucet</h1>
+            <p>You can claim testnet $OVER from this faucet. Make sure to connect your wallet and switch to the OVER testnet. <br>You can request 10 Testnet $OVER every 30 minutes.</p>
+            <h2 id="balance">Faucet Balance: (loading ...)</h2>
+            <h3 id="tx_result" class="text-info"></h3>
+            <a class="btn btn-lg btn-primary" role="button" onclick="requestEther()">Request OVER</a>
+            <a class="btn btn-lg btn-success" role="button" onclick="donateEther()">Donate OVER</a>
         </div>
-
-        <div class="page-header">
-            <h2>Chain Details</h2>
+        <div class="page-header"><h3>Chain Details</h3></div>
+        <div class="text-center">
+            <b>Network Name:</b> OVER Dolphin<br>
+            <b>RPC URL:</b> <a href="https://wallet-dolphin.rpc.over.network/">wallet-dolphin.rpc.over.network</a><br>
+            <b>Chain ID:</b> 541762<br>
+            <b>Currency Symbol:</b> OVER<br>
+            <button onclick="addNetwork()">Add to 🦊 MetaMask</button>
         </div>
-        <div>
-            <h3>Network Name: OVER Dolphin</h3>
-            <h3>RPC URL: <a href="https://wallet-dolphin.rpc.over.network/">wallet-dolphin.rpc.over.network</a></h3>
-            <h3>Chain ID: 541762</h3>
-            <h3>Currency Symbol: OVER</h3>
-            <h3><button class="btn btn-outline-light" onClick="addNetwork()">Add to 🦊 MetaMask</button></h3>
-        </div>
-
-        <div class="page-header">
-            <h2>Faucet Data</h2>
-        </div>
-        <div>
-            <h3>Contract Address: <a href="https://dolphin.view.over.network/address/0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0" target="_blank">0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0</a></h3>
-            <h3>Please donate testnet $OVER back to the faucet when finished with testing</h3>
+        <div class="page-header"><h3>Faucet Data</h3></div>
+        <div class="text-center">
+            <b>Contract Address:</b> <a href="https://dolphin.view.over.network/address/0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0" target="_blank">0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0</a><br>
+            <i>Please donate testnet $OVER back to the faucet when finished with testing</i>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 PajEth | <a href="https://twitter.com/paj_eth" target="_blank">Created by paj_eth</a></p>
-    </footer>
-
+    <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.3.1/dist/web3.min.js" crossorigin="anonymous"></script>
 
     <script>
-        const contract_address = '0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0'
+        const contract_address = '0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0';
         const contract_abi = [
-            // contract ABI data here
+            // ABI details here...
         ];
+
         const chainId = '541762';
         const rpcURL = 'https://wallet-dolphin.rpc.over.network/';
         const networkName = 'OVER Dolphin';
@@ -178,51 +124,41 @@
 
         window.addEventListener('load', function () {
             if (typeof web3 !== 'undefined') {
-                web3 = new Web3(window.ethereum)
+                web3 = new Web3(window.ethereum);
             } else {
                 web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
             }
 
-            new Promise((resolve, reject) => {
-                window.ethereum.enable();
-                resolve();
-            }).then(() => {
+            window.ethereum.enable().then(() => {
                 getBalance();
             });
-        })
+        });
 
         function requestEther() {
-            new Promise((resolve, reject) => {
-                getAccounts(function (result) {
-                    const Faucet = new web3.eth.Contract(contract_abi, contract_address);
-                    Faucet.methods.withdraw().send({ from: result[0] }, function (error, result) {
-                        if (!error) {
-                            document.getElementById("tx_result").innerHTML = "TX created successfully with the hash: " + result;
-                        } else {
-                            document.getElementById("tx_result").innerHTML = error;
-                        }
-                    });
+            getAccounts(function(result) {
+                const Faucet = new web3.eth.Contract(contract_abi, contract_address);
+                Faucet.methods.withdraw().send({ from: result[0] }, function (error, txHash) {
+                    document.getElementById("tx_result").innerHTML = !error 
+                        ? "TX created successfully with the hash: " + txHash 
+                        : error;
                 });
-                resolve();
             });
         }
 
         function donateEther() {
-            var amount = prompt("How much OVER do you want to donate?", "0.5");
-            if (isNaN(parseInt(amount))) {
+            let amount = prompt("How much OVER do you want to donate?", "0.5");
+            if (isNaN(parseFloat(amount))) {
                 document.getElementById("tx_result").innerHTML = "Error: Please input a valid number";
             } else {
-                new Promise((resolve) => {
-                    getAccounts(function (result) {
-                        web3.eth.sendTransaction(
-                            {
-                                from: result[0],
-                                to: contract_address,
-                                value: web3.utils.toWei(amount, 'ether')
-                            }, function (err, transactionHash) {
-                                if (!err)
-                                    document.getElementById("tx_result").innerHTML = "TX created successfully with the hash: " + transactionHash;
-                            });
+                getAccounts(function(result) {
+                    web3.eth.sendTransaction({
+                        from: result[0],
+                        to: contract_address,
+                        value: web3.utils.toWei(amount, 'ether')
+                    }, function(err, txHash) {
+                        document.getElementById("tx_result").innerHTML = !err 
+                            ? "TX created successfully with the hash: " + txHash 
+                            : err;
                     });
                 });
             }
@@ -239,20 +175,15 @@
         }
 
         function getBalance() {
-            try {
-                web3.eth.getBalance(contract_address, function (error, wei) {
-                    if (!error) {
-                        var balance = web3.utils.fromWei(wei, 'ether');
-                        document.getElementById("balance").innerHTML = "Faucet Balance: " + balance + " OVER";
-                    } else {
-                        console.error(error);
-                    }
-                });
-            } catch (err) {
-                console.error(err);
-            }
+            web3.eth.getBalance(contract_address, function (error, wei) {
+                if (!error) {
+                    const balance = web3.utils.fromWei(wei, 'ether');
+                    document.getElementById("balance").innerHTML = "Available Funds: " + balance + " OVER";
+                } else {
+                    document.getElementById("balance").innerHTML = error;
+                }
+            });
         }
     </script>
 </body>
-
 </html>
