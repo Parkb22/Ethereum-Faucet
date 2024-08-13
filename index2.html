@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TJ4NJJSFEQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJ4NJJSFEQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'G-TJ4NJJSFEQ');
-</script>
+        gtag('config', 'G-TJ4NJJSFEQ');
+    </script>
     <meta charset="utf-8">
     <meta name="coinzilla" content="d61d37aeeeb6010e7527e2af252bf23a" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,34 +19,6 @@
     <title>OVER Testnet Faucet</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <style>
-        /* Sticky footer ad */
-.sticky-footer-ad {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-    text-align: center;
-    padding: 10px 0;
-    z-index: 1000;
-    box-shadow: 0px -3px 10px #ff00ff; /* Shadow to make it stand out */
-}
-
-.sticky-footer-ad img {
-    max-width: 100%;
-    height: auto;
-}
-
-.sticky-footer-ad a {
-    color: #00ffff;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.sticky-footer-ad a:hover {
-    text-decoration: underline;
-}
-
         /* Darker gradient background */
         body {
             background: linear-gradient(45deg, #000000, #0d0d0d, #1a1a1a, #333333);
@@ -159,6 +131,46 @@
             max-width: 100%;
             height: auto;
         }
+
+        /* Sticky footer ad */
+        .sticky-footer-ad {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+            text-align: center;
+            padding: 10px 0;
+            z-index: 1000;
+            box-shadow: 0px -3px 10px #ff00ff; /* Shadow to make it stand out */
+        }
+
+        .sticky-footer-ad img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .sticky-footer-ad a {
+            color: #00ffff;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .sticky-footer-ad a:hover {
+            text-decoration: underline;
+        }
+
+        /* Close button styling */
+        .sticky-footer-ad .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -166,8 +178,8 @@
     <div class="banner-ad glass-effect">
         <p class="neon-text">Advertise <a href="https://x.com/OverFaucet">Here</a></p>
         <!-- Replace with actual ad or image -->
-       <a href="https://overstake.io"> <img src="https://s10.gifyu.com/images/SDlah.gif" alt="Banner Ad"></a><br>
-        <a href="https://overstake.io"> <img src="https://i.ibb.co/8bfcvmb/Group-5.png" alt="Banner Ad"></a><br>
+        <a href="https://overstake.io"> <img src="https://s10.gifyu.com/images/SDlah.gif" alt="Banner Ad"></a><br>
+        <a href="https://twitter.com"> <img src="https://i.ibb.co/8bfcvmb/Group-5.png" alt="Banner Ad"></a><br>
     </div>
 
     <div class="container theme-showcase" role="main">
@@ -208,11 +220,14 @@
             <i style="color: #00ffff;">Don't be greedy❤️❤️ Testnet OVER and OFC have no value ❤️</i>
         </div>
     </div>
-<div class="sticky-footer-ad">
-    <a href="https://overstake.io" target="_blank">
-        <img src="https://s10.gifyu.com/images/SDlah.gif" alt="Sticky Footer Ad">
-    </a>
-</div>
+
+    <!-- Sticky Footer Ad -->
+    <div class="sticky-footer-ad">
+        <button class="close-btn" onclick="closeFooterAd()">×</button>
+        <a href="https://google.com" target="_blank">
+            <img src="https://i.ibb.co/8bfcvmb/Group-5.png" alt="Sticky Footer Ad">
+        </a>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -391,6 +406,10 @@
             } catch (err) {
                 document.getElementById("balance").innerHTML = err;
             }
+        }
+
+        function closeFooterAd() {
+            document.querySelector('.sticky-footer-ad').style.display = 'none';
         }
     </script>
 </body>
