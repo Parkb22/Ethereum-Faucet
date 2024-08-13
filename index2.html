@@ -59,10 +59,16 @@
             color: #00ffff;
             font-size: 1.2rem;
             margin-left: 20px;
+            cursor: pointer;
         }
 
         .navbar-nav .nav-link:hover {
             color: #ff00ff;
+        }
+
+        .navbar-nav .nav-link.disabled {
+            color: #777777;
+            cursor: not-allowed;
         }
 
         /* Neon text flicker effect */
@@ -218,6 +224,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="https://twitter.com/OverFaucet" target="_blank">Twitter</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" onclick="comingSoon()">Stake</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="contactUs()">Contact Us</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -228,7 +240,7 @@
         <p class="neon-text">Advertise <a href="https://x.com/OverFaucet">Here</a></p>
         <!-- Replace with actual ad or image -->
         <a href="https://overstake.io"> <img src="https://s10.gifyu.com/images/SDlah.gif" alt="Banner Ad"></a><br>
-        <a href="https://overstake.io"> <img src="https://i.ibb.co/8bfcvmb/Group-5.png" alt="Banner Ad"></a><br>
+        <a href="https://google.com"> <img src="https://i.ibb.co/8bfcvmb/Group-5.png" alt="Banner Ad"></a><br>
     </div>
 
     <div class="container theme-showcase" role="main">
@@ -273,8 +285,8 @@
     <!-- Sticky Footer Ad -->
     <div class="sticky-footer-ad">
         <button class="close-btn" onclick="closeFooterAd()">×</button>
-        <a href="https://your-ad-link.com" target="_blank">
-            <img src="https://your-image-link.com/footer-ad-image.png" alt="Sticky Footer Ad">
+        <a href="https://overstake.io">
+            <img src="https://s10.gifyu.com/images/SDlah.gif" alt="Sticky Footer Ad">
         </a>
     </div>
 
@@ -459,6 +471,14 @@
 
         function closeFooterAd() {
             document.querySelector('.sticky-footer-ad').style.display = 'none';
+        }
+
+        function comingSoon() {
+            alert("The Stake feature is coming soon!");
+        }
+
+        function contactUs() {
+            window.location.href = "https://t.me/whale141";
         }
     </script>
 </body>
