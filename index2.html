@@ -36,6 +36,35 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* Navbar styles */
+        .navbar-custom {
+            background-color: rgba(26, 26, 26, 0.9);
+            box-shadow: 0px 4px 10px #ff00ff;
+            padding: 10px 20px;
+        }
+
+        .navbar-brand {
+            color: #ff00ff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: 0px 0px 10px #ff00ff;
+        }
+
+        .navbar-brand img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #00ffff;
+            font-size: 1.2rem;
+            margin-left: 20px;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ff00ff;
+        }
+
         /* Neon text flicker effect */
         .neon-text {
             color: #ff00ff;
@@ -174,12 +203,32 @@
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://pbs.twimg.com/profile_images/1823016387289436160/rvO34zc5_400x400.jpg" alt="Logo">
+                OverFaucet
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://twitter.com/OverFaucet" target="_blank">Twitter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <!-- Banner Ad Placeholder -->
     <div class="banner-ad glass-effect">
         <p class="neon-text">Advertise <a href="https://x.com/OverFaucet">Here</a></p>
         <!-- Replace with actual ad or image -->
         <a href="https://overstake.io"> <img src="https://s10.gifyu.com/images/SDlah.gif" alt="Banner Ad"></a><br>
-        <a href="https://twitter.com"> <img src="https://i.ibb.co/8bfcvmb/Group-5.png" alt="Banner Ad"></a><br>
+        <a href="https://overstake.io"> <img src="https://i.ibb.co/8bfcvmb/Group-5.png" alt="Banner Ad"></a><br>
     </div>
 
     <div class="container theme-showcase" role="main">
@@ -224,8 +273,8 @@
     <!-- Sticky Footer Ad -->
     <div class="sticky-footer-ad">
         <button class="close-btn" onclick="closeFooterAd()">×</button>
-        <a href="https://google.com" target="_blank">
-            <img src="https://i.ibb.co/8bfcvmb/Group-5.png" alt="Sticky Footer Ad">
+        <a href="https://your-ad-link.com" target="_blank">
+            <img src="https://your-image-link.com/footer-ad-image.png" alt="Sticky Footer Ad">
         </a>
     </div>
 
