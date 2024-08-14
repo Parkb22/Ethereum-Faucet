@@ -286,34 +286,43 @@
             transform: translateY(-3px);
         }
 
-        @media (max-width: 768px) {
-            .curved-background {
-                clip-path: none;
-                border-radius: 0;
-                padding-top: 70px; /* Adjust padding for better spacing */
-            }
+  @media (max-width: 768px) {
+    .curved-background {
+        clip-path: none;
+        border-radius: 0;
+        padding-top: 70px; /* Adjust padding for better spacing */
+    }
 
-            /* Ensure content stays within bounds */
-            .neumorphism, .neumorphism-inset {
-                padding: 20px;
-                margin: 20px auto;
-                width: 98%; /* Further increase block width */
-                max-width: 98%;
-                overflow-x: hidden;
-            }
+    /* Ensure content stays within bounds */
+    .neumorphism, .neumorphism-inset, .banner-ad, .sticky-footer-ad {
+        padding: 20px;
+        margin: 20px auto;
+        width: 98%; /* Make all blocks the same width */
+        max-width: 98%;
+        overflow-x: hidden;
+    }
 
-            /* Increase block padding */
-            .neumorphism, .neumorphism-inset {
-                padding: 30px;
-            }
+    /* Increase block padding */
+    .neumorphism, .neumorphism-inset {
+        padding: 30px;
+    }
 
-            /* Ensure buttons do not take up too much space */
-            .btn-claim, .btn-donate, .btn-metamask {
-                width: 100%;
-                max-width: none;
-                margin-bottom: 15px;
-            }
-        }
+    /* Ensure buttons do not take up too much space */
+    .btn-claim, .btn-donate, .btn-metamask {
+        width: 100%;
+        max-width: none;
+        margin-bottom: 15px;
+    }
+
+    .sticky-footer-ad {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        border-radius: 15px;
+    }
+}
     </style>
 </head>
 <body class="parallax">
