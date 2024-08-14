@@ -208,13 +208,16 @@
         .sticky-footer-ad {
             position: fixed;
             bottom: 0;
-            left: 0;
-            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; /* Adjust to ensure it fits well */
+            max-width: 600px;
             background-color: #2b2b44;
             text-align: center;
             padding: 10px 0;
             z-index: 1000;
             box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
         }
 
         .sticky-footer-ad img {
@@ -294,8 +297,8 @@
             .neumorphism, .neumorphism-inset {
                 padding: 20px;
                 margin: 20px auto;
-                width: 90%; /* Increase block width */
-                max-width: 90%;
+                width: 95%; /* Increase block width */
+                max-width: 95%;
                 overflow-x: hidden;
             }
 
