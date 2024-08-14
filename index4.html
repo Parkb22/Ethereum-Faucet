@@ -195,6 +195,7 @@
             padding: 20px;
             text-align: center;
             margin-bottom: 20px;
+            box-sizing: border-box;
         }
 
         .banner-ad img {
@@ -210,14 +211,15 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 90%; /* Adjust to ensure it fits well */
-            max-width: 600px;
+            width: 100%;
+            max-width: 98%;
             background-color: #2b2b44;
             text-align: center;
-            padding: 10px 0;
+            padding: 20px 0;
             z-index: 1000;
             box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.5);
             border-radius: 15px;
+            box-sizing: border-box;
         }
 
         .sticky-footer-ad img {
@@ -286,43 +288,44 @@
             transform: translateY(-3px);
         }
 
-  @media (max-width: 768px) {
-    .curved-background {
-        clip-path: none;
-        border-radius: 0;
-        padding-top: 70px; /* Adjust padding for better spacing */
-    }
+        @media (max-width: 768px) {
+            .curved-background {
+                clip-path: none;
+                border-radius: 0;
+                padding-top: 70px; /* Adjust padding for better spacing */
+            }
 
-    /* Ensure content stays within bounds */
-    .neumorphism, .neumorphism-inset, .banner-ad, .sticky-footer-ad {
-        padding: 20px;
-        margin: 20px auto;
-        width: 98%; /* Make all blocks the same width */
-        max-width: 98%;
-        overflow-x: hidden;
-    }
+            /* Ensure content stays within bounds */
+            .neumorphism, .neumorphism-inset, .banner-ad, .sticky-footer-ad {
+                padding: 20px;
+                margin: 0 auto 20px; /* Ensure uniform margins */
+                width: 100%; /* Ensure blocks are the same width */
+                max-width: 98%;
+                overflow-x: hidden;
+                box-sizing: border-box; /* Include padding in width */
+            }
 
-    /* Increase block padding */
-    .neumorphism, .neumorphism-inset {
-        padding: 30px;
-    }
+            /* Increase block padding */
+            .neumorphism, .neumorphism-inset {
+                padding: 30px;
+            }
 
-    /* Ensure buttons do not take up too much space */
-    .btn-claim, .btn-donate, .btn-metamask {
-        width: 100%;
-        max-width: none;
-        margin-bottom: 15px;
-    }
+            /* Ensure buttons do not take up too much space */
+            .btn-claim, .btn-donate, .btn-metamask {
+                width: 100%;
+                max-width: none;
+                margin-bottom: 15px;
+            }
 
-    .sticky-footer-ad {
-        position: fixed;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1000;
-        border-radius: 15px;
-    }
-}
+            .sticky-footer-ad {
+                position: fixed;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1000;
+                border-radius: 15px;
+            }
+        }
     </style>
 </head>
 <body class="parallax">
@@ -610,6 +613,10 @@
 
         function contactUs() {
             window.location.href = "https://t.me/whale141";
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
