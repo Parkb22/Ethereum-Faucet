@@ -111,12 +111,17 @@
         /* Background with curved drop effect */
         .curved-background {
             background-color: #1e1e2e;
-            border-radius: 0 0 15px 15px;
-            clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 0% 100%);
+            border-radius: 0 0 50px 50px;
             padding: 50px;
+            margin-top: -20px;
         }
 
         /* Buttons with contrast */
+        .btn-claim, .btn-donate, .btn-metamask {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
         .btn-claim {
             background-color: #89b4fa;
             color: #151521;
@@ -278,6 +283,27 @@
 
         #back-to-top:hover {
             transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .curved-background {
+                clip-path: none;
+                border-radius: 0;
+                padding-top: 70px; /* Adjust padding for better spacing */
+            }
+
+            /* Ensure content stays within bounds */
+            .neumorphism, .neumorphism-inset {
+                padding: 20px;
+                margin: 10px;
+                overflow-x: hidden;
+            }
+
+            /* Stack buttons vertically */
+            .btn-claim, .btn-donate, .btn-metamask {
+                width: 100%;
+                margin-bottom: 15px;
+            }
         }
     </style>
 </head>
