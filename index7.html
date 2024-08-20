@@ -582,23 +582,75 @@
         }
 
         async function requestClaim() {
-            try {
-                const accounts = await web3.eth.getAccounts();
-                const fromAddress = accounts[0];
+            const accounts = await web3.eth.getAccounts();
+            const fromAddress = accounts[0];
 
-                const data = faucetContract.methods.claim().encodeABI();
+            const data = faucetContract.methods.claim().encodeABI();
+            const forwardRequest = {
+                from: fromAddress,
+                to: faucetAddress,
+                value: '0',
+                gas: '100000',  // Adjust based on estimated gas usage
+                nonce: await getNonce(fromAddress),
+                data: data
+            };
 
-                const transactionParameters = {
-                    to: faucetAddress,
-                    from: fromAddress,
-                    data: data,
-                };
+            const signature = await signRequest(forwardRequest);
 
-                const txHash = await web3.eth.sendTransaction(transactionParameters);
-                document.getElementById("tx_result").innerText = `Transaction successful with hash: ${txHash.transactionHash}`;
-            } catch (error) {
-                document.getElementById("tx_result").innerText = `Transaction failed: ${error.message}`;
-                console.error("Error making claim request:", error);
+            // Send the signed request to the relayer service
+            await sendToRelayer(forwardRequest, signature);
+        }
+
+        async function getNonce(address) {
+            // The nonce can be retrieved from the forwarder contract
+            const forwarderContract = new web3.eth.Contract(ForwarderABI, forwarderAddress);
+            return forwarderContract.methods.getNonce(address).call();
+        }
+
+        async function signRequest(request) {
+            const domain = {
+                name: 'MinimalForwarder',
+                version: '0.0.1',
+                chainId: await web3.eth.getChainId(),
+                verifyingContract: forwarderAddress
+            };
+
+            const types = {
+                ForwardRequest: [
+                    { name: 'from', type: 'address' },
+                    { name: 'to', type: 'address' },
+                    { name: 'value', type: 'uint256' },
+                    { name: 'gas', type: 'uint256' },
+                    { name: 'nonce', type: 'uint256' },
+                    { name: 'data', type: 'bytes' }
+                ]
+            };
+
+            const signature = await web3.currentProvider.request({
+                method: 'eth_signTypedData_v4',
+                params: [request.from, JSON.stringify({ domain, types, message: request })],
+            });
+
+            return signature;
+        }
+
+        async function sendToRelayer(request, signature) {
+            // This function should send the request and signature to your relayer
+            // You need to implement the server-side relayer logic
+
+            const response = await fetch('https://your-relayer-service.com/relay', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ request, signature })
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById("tx_result").innerText = `Transaction successful with hash: ${result.txHash}`;
+            } else {
+                document.getElementById("tx_result").innerText = `Transaction failed: ${result.error}`;
             }
         }
 
