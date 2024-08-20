@@ -1,356 +1,625 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJ4NJJSFEQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-TJ4NJJSFEQ');
+    </script>
     <meta charset="utf-8">
+    <meta name="coinzilla" content="d61d37aeeeb6010e7527e2af252bf23a" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="OVER Testnet Faucet">
     <meta name="author" content="OverStake">
     <title>OVER Testnet Faucet</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* Darker gradient background */
+        /* Modernized theme */
         body {
-            background: linear-gradient(45deg, #000000, #0d0d0d, #1a1a1a, #333333);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
-            color: #e0e0e0;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: #1f1f2e; /* Modern dark background */
+            font-family: 'Poppins', sans-serif;
             padding-top: 70px;
             padding-bottom: 30px;
             font-size: 1rem;
+            color: #d1d1d1;
+            line-height: 1.6;
         }
 
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Neon text flicker effect */
-        .neon-text {
-            color: #ff00ff;
-            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-            animation: flicker 1.5s infinite alternate;
-        }
-
-        @keyframes flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-                opacity: 1;
-            }
-            20%, 24%, 55% {
-                opacity: 0.5;
-            }
-            22%, 26% {
-                opacity: 0.2;
-            }
-        }
-
-        /* Common glassmorphism style */
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        /* Custom cursor */
-        body {
-            cursor: url('https://custom-cursor-url.png'), auto;
-        }
-
-        /* Buttons with 3D effect */
-        button {
-            background-color: #ff00ff;
-            color: #0d0d0d;
-            border: none;
+        /* Navbar styles */
+        .navbar-custom {
+            background-color: #252537;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
             padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0px 0px 15px #ff00ff;
-            transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
-            display: inline-block; /* Ensure buttons are inline elements */
+            border-radius: 10px;
         }
 
-        button:hover {
-            background-color: #00ffff;
-            box-shadow: 0px 0px 15px #00ffff;
-            color: #0d0d0d;
+        .navbar-brand {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .navbar-brand img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #007bff;
+            font-size: 1.2rem;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffffff;
+        }
+
+        .navbar-nav .nav-link.disabled {
+            color: #6c7a96;
+            cursor: not-allowed;
+        }
+
+        /* Mobile menu styling */
+        .navbar-toggler {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="#1f1f2e" viewBox="0 0 30 30"><path stroke="rgba(31,31,46,0.5)" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/></svg>');
+        }
+
+        /* Header styles */
+        h1, h3 {
+            color: #007bff;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Available Funds Highlight */
+        #balance {
+            color: #ffc107;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Modern container style */
+        .container-style {
+            background: #252537;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            color: #d1d1d1;
+        }
+
+        /* Background with curved drop effect */
+        .curved-background {
+            background-color: #2a2a3e;
+            border-radius: 0 0 50px 50px;
+            padding: 50px;
+            margin-top: -20px;
+        }
+
+        /* Buttons with contrast */
+        .btn-claim, .btn-donate, .btn-metamask {
+            max-width: 200px;
+            margin: 0 auto 15px;
+            display: block;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-claim {
+            background-color: #007bff;
+        }
+
+        .btn-donate {
+            background-color: #f03a5f;
+        }
+
+        .btn-metamask {
+            background-color: #f9a825;
+        }
+
+        .btn-claim:hover, .btn-donate:hover, .btn-metamask:hover {
             transform: translateY(-3px);
+            opacity: 0.9;
         }
 
         /* Links */
         a {
-            color: #ff00ff;
+            color: #007bff;
             text-decoration: none;
         }
 
         a:hover {
-            color: #00ffff;
+            color: #ffffff;
             text-decoration: underline;
         }
 
         /* Footer styling */
         footer {
-            border-top: 2px solid #ff00ff;
+            border-top: 2px solid #6c7a96;
             padding: 10px;
             text-align: center;
-            background-color: rgba(26, 26, 26, 0.9);
+            background-color: #252537;
             margin-top: 40px;
-            box-shadow: 0px 0px 10px #ff00ff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            color: #d1d1d1;
         }
 
         .footer-spacing {
             margin-bottom: 40px;
         }
 
-        /* Centering and sizing the banner ad */
+        /* Banner ad styling */
         .banner-ad {
-            background-color: #1a1a1a;
-            border: 2px solid #ff00ff;
+            background: #252537;
+            border-radius: 10px;
             padding: 20px;
             text-align: center;
             margin-bottom: 20px;
-            box-shadow: 0px 0px 10px #ff00ff;
-        }
-
-        /* Ensure banner matches the block width */
-        .container .banner-ad {
-            width: 100%;
-            max-width: 100%;
+            position: relative;
         }
 
         .banner-ad img {
-            max-width: 100%; /* Ensure the image is responsive */
+            max-width: 100%;
             height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .banner-ad .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: #d1d1d1;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Sticky footer ad */
+        .sticky-footer-ad {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 98%;
+            background-color: #252537;
+            text-align: center;
+            padding: 20px 0;
+            z-index: 1000;
+            box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        .sticky-footer-ad img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .sticky-footer-ad a {
+            color: #007bff;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .sticky-footer-ad a:hover {
+            text-decoration: underline;
+        }
+
+        /* Close button styling */
+        .sticky-footer-ad .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: #d1d1d1;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Custom cursor */
+        body, a, button {
+            cursor: default;
+        }
+
+        /* Parallax effect on background */
+        .parallax {
+            background-image: url('https://example.com/background.jpg'); /* Example background image */
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Icons */
+        .icon {
+            margin-right: 8px;
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .curved-background {
+                clip-path: none;
+                border-radius: 0;
+                padding-top: 70px;
+            }
+
+            /* Ensure content stays within bounds */
+            .container-style, .banner-ad, .sticky-footer-ad {
+                padding: 20px;
+                margin: 0 auto 20px;
+                width: 100%;
+                max-width: 98%;
+                overflow-x: hidden;
+                box-sizing: border-box;
+            }
+
+            /* Ensure buttons do not take up too much space */
+            .btn-claim, .btn-donate, .btn-metamask {
+                width: 100%;
+                max-width: none;
+                margin-bottom: 15px;
+            }
+
+            .sticky-footer-ad {
+                position: fixed;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1000;
+                border-radius: 10px;
+            }
         }
     </style>
 </head>
-<body>
+<body class="parallax">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://pbs.twimg.com/profile_images/1823016387289436160/rvO34zc5_400x400.jpg" alt="Logo">
+                OverFaucet
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://twitter.com/OverFaucet" target="_blank">Twitter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" onclick="comingSoon()">Stake</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" onclick="comingSoon()">Launchpad</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" onclick="comingSoon()">Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="contactUs()">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <!-- Banner Ad Placeholder -->
-    <div class="banner-ad glass-effect">
-        <p class="neon-text">Advertise <a href="https://twitter.com/paj_eth">Here</a></p>
+    <div class="banner-ad container-style" id="top-banner-ad">
+        <button class="close-btn" onclick="closeBannerAd()">×</button>
+        <p>Advertise <a href="https://x.com/OverFaucet">Here</a></p>
         <!-- Replace with actual ad or image -->
-       <a href="https://overstake.io"> <img src="https://s10.gifyu.com/images/SDlah.gif" alt="Banner Ad"></a>
+        <a href="https://overflip.fun"><img src="https://s12.gifyu.com/images/SDgv4.gif" alt="Banner Ad"></a><br><br>
+        <a href="https://overstake.io"><img src="https://s10.gifyu.com/images/SDlah.gif" alt="Banner Ad"></a><br><br>
+        <a href="https://overfaucet.lol"><img src="https://s12.gifyu.com/images/SDQIa.gif" alt="Banner Ad"></a><br><br>
+        <a href="https://bendover.lol"><img src="https://i.ibb.co/8bfcvmb/Group-5.png" alt="Banner Ad"></a><br><br>
     </div>
 
-    <div class="container theme-showcase" role="main">
-        <div class="jumbotron text-center glass-effect">
-            <h1 class="neon-text">OverFaucet.lol</h1>
-            <i>A Free Community-Run Faucet</i><br><br>
-        
-            <p style="color: #00ffff;">Currently, you can claim testnet $OVER from this faucet. <b>Make sure your wallet is connected to the OVER testnet.</b><br>You can request 10 Testnet $OVER every 30 minutes.</p> Please consider donating OVER back to the faucet when you're done 🙏<br>
-            <br>
-            <h2 id="balance" class="neon-text">Faucet Balance: (loading ...)</h2>
-            <br>
-            <h3 id="tx_result" class="text-info"></h3>
-            <br>
-            <br>
-            <a class="btn btn-lg" role="button" style="background-color: #00ffff; color: #0d0d0d;" onclick="requestEther()">Request OVER</a>
-            <a class="btn btn-lg" role="button" style="background-color: #ff00ff; color: #0d0d0d;" onclick="donateEther()">Donate OVER</a>
-        </div>
+    <!-- Curved Background Section -->
+    <div class="curved-background">
+        <div class="container theme-showcase" role="main">
+            <div class="jumbotron text-center container-style">
+                <h1>OverFaucet.lol</h1>
+                <i>A Free Community-Run Faucet</i><br><br>
+            
+                <p>Currently you can claim testnet $OVER from this faucet. Once mainnet launches, you will be able to claim <b>daily</b> $OVER. <b>Make sure your wallet is connected to the OVER testnet otherwise you will lose gas.</b><br>You can request 10 Testnet $OVER every 30 minutes.</p> 
+                <br>
+                <h2 id="balance">Available Funds: (loading ...)</h2>
+                <br>
+                <h3 id="tx_result" class="text-info"></h3>
+                <br>
+                <br>
+                <button class="btn-claim" role="button" onclick="requestClaim()">Claim OVER</button>
+            </div>
 
-        <div class="page-header glass-effect">
-            <h3 class="neon-text" style="text-align: center;">Chain Details</h3>
+            <div class="page-header container-style">
+                <h3 style="text-align: center;">Last Claim Info</h3>
+            </div>
+            <div class="text-center container-style">
+                <b>Last Claim Block:</b> <span id="lastClaimBlock">(loading...)</span><br>
+                <b>Global Cooldown:</b> <span id="globalCooldown">(loading...)</span><br>
+                <b>Last Claimer:</b> <span id="lastClaimer">(loading...)</span><br>
+            </div>
         </div>
-        <div class="text-center glass-effect">
-            <b style="color: #ff00ff;">Network Name:</b> <span style="color: #00ffff;">OVER Dolphin</span><br>
-            <b style="color: #ff00ff;">RPC URL:</b> <span style="color: #00ffff;">wallet-dolphin.rpc.over.network</span><br>
-            <b style="color: #ff00ff;">Chain ID:</b> <span style="color: #00ffff;">541762</span><br>
-            <b style="color: #ff00ff;">Currency Symbol:</b> <span style="color: #00ffff;">OVER</span><br><br>
-            <button onclick="addNetwork()"><b>Add to 🦊 MetaMask</b></button>
-        </div>
+    </div>
 
-        <div class="page-header glass-effect">
-            <h3 class="neon-text" style="text-align: center;">Faucet Info</h3>
-        </div>
-        <div class="text-center glass-effect footer-spacing">
-            <b style="color: #ff00ff;">Contract Address:</b> <a href="https://dolphin.view.over.network/address/0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0" target="_blank" style="color: #00ffff;">0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0</a><br><br>
-            <i style="color: #00ffff;">Don't be greedy❤️❤️ Please donate testnet $OVER back to the faucet when finished with testing ❤️</i>
-        </div>
+    <!-- Sticky Footer Ad -->
+    <div class="sticky-footer-ad container-style">
+        <button class="close-btn" onclick="closeFooterAd()">×</button>
+        <a href="https://overflip.fun">
+            <img src="https://s12.gifyu.com/images/SDgv4.gif" alt="Sticky Footer Ad">
+        </a><br><p>Advertise <a href="https://x.com/OverFaucet">Here</a></p>
     </div>
 
     <!-- Footer -->
-  <footer>
-        Made by <a href="https://twitter.com/paj_eth" target="_blank" style="color: #ff00ff;">Paj_ETH</a> with Love ❤️❤️
+    <footer>
+        Made by the <a href="https://x.com/OverFaucet" target="_blank">OverFaucet Team</a> with Love ❤️❤️
         <br><br>
     </footer>
 
-    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" onclick="scrollToTop()">↑</button>
+
     <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.3.1/dist/web3.min.js" crossorigin="anonymous"></script>
 
     <!-- Your script here -->
+    <script>
+        // Addresses of deployed contracts
+        const faucetAddress = '0x3F608c0492203C1381575f94bC910f2b539eab88';
+        const forwarderAddress = '0x0f8250E1B8D0e1db1f8CC8d1Aece341273964a1F';
 
- <script>
-        const contract_address = '0x4c421f276f21d2d98e540a1cfbc26fb1493a1ef0'
-        const contract_abi = [
+        // ABI of the Faucet contract
+        const faucetABI = [
             {
-                "anonymous": false,
+                "inputs": [],
+                "name": "claim",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
                 "inputs": [
                     {
-                        "indexed": true,
                         "internalType": "address",
-                        "name": "from",
+                        "name": "newOwner",
                         "type": "address"
-                    },
+                    }
+                ],
+                "name": "transferOwnership",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
                     {
-                        "indexed": false,
+                        "internalType": "contract MinimalForwarder",
+                        "name": "forwarder",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "inputs": [],
+                "name": "globalCooldown",
+                "outputs": [
+                    {
                         "internalType": "uint256",
-                        "name": "amount",
+                        "name": "",
                         "type": "uint256"
                     }
                 ],
-                "name": "Deposit",
-                "type": "event"
+                "stateMutability": "view",
+                "type": "function"
             },
             {
-                "anonymous": false,
                 "inputs": [
                     {
-                        "indexed": true,
                         "internalType": "address",
-                        "name": "to",
+                        "name": "forwarder",
                         "type": "address"
                     }
                 ],
-                "name": "Withdrawal",
-                "type": "event"
-            },
-            {
-                "inputs": [],
-                "name": "destroy",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "stateMutability": "payable",
-                "type": "receive"
-            },
-            {
-                "inputs": [],
-                "name": "withdraw",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "stateMutability": "nonpayable",
-                "type": "constructor"
-            }
-        ]
-     // FUSE blockchain details
-      const chainId = '0x84442';
-      const rpcURL = 'https://wallet-dolphin.rpc.over.network/';
-      const networkName = 'OVER Dolphin';
-      const currencyName = 'OVER';
-      const currencySymbol = 'OVER';
-      const explorerURL = 'https://dolphin.view.over.network/tx/';
-
-      const addNetwork = async () => {
-        if (!window.ethereum) {
-          console.error('Metamask not detected');
-          return;
-        }
-        await window.ethereum.request({
-          method: 'wallet_addEthereumChain',
-          params: [
-            {
-              chainId: chainId,
-              chainName: networkName,
-              rpcUrls: [rpcURL],
-              blockExplorerUrls: [explorerURL],
-
-              nativeCurrency: {
-                name: currencyName,
-                symbol: currencySymbol, // 2-6 characters long
-                decimals: 18,
-              },
-            },
-          ],
-        });
-        // refresh
-        window.location.reload();
-      };
-        window.addEventListener('load', function () {
-            if (typeof web3 !== 'undefined') {
-                web3 = new Web3(window.ethereum)
-            } else {
-                web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
-            }
-
-            new Promise((resolve, reject) => {
-                window.ethereum.enable();
-                resolve();
-            }).then(() =>{
-                getBalance();
-            });
-        })
-
-
-        function requestEther(){
-            new Promise((resolve, reject) => {
-                getAccounts(function(result) {
-                    const Faucet = new web3.eth.Contract(contract_abi, contract_address);
-                    Faucet.methods.withdraw().send({from:result[0]},function (error, result){
-                        if(!error){
-                            document.getElementById("tx_result").innerHTML = "TX created successfully with the hash: " + result;
-                        }else{
-                            document.getElementById("tx_result").innerHTML = error;
-                        }
-                    });
-                });
-                resolve();
-            });
-        }
-        function donateEther(){
-            var amount = prompt("How much OVER do you want to donate?", "0.5");
-            if(isNaN(parseInt(amount))){
-                document.getElementById("tx_result").innerHTML = "Error: Please input a valid number";
-            }else{
-                new Promise((resolve) => {
-                    getAccounts(function (result) {
-                        web3.eth.sendTransaction(
-                            {
-                                from: result[0],
-                                to: contract_address,
-                                value: web3.utils.toWei(amount, 'ether')
-                            }, function(err, transactionHash) {
-                                if (!err)
-                                    document.getElementById("tx_result").innerHTML = "TX created successfully with the hash: " + transactionHash;
-                            });
-                    });
-                });
-            }
-        }
-
-        function getAccounts(callback) {
-            web3.eth.getAccounts((error,result) => {
-                if (error) {
-                    console.log(error);
-                } else {
-                    callback(result);
-                }
-            });
-        }
-        function getBalance() {
-            try {
-                web3.eth.getBalance(contract_address, function (error, wei) {
-                    if (!error) {
-                        var balance = web3.utils.fromWei(wei, 'ether');
-                        document.getElementById("balance").innerHTML = "Available Funds: " + balance + " OVER";
+                "name": "isTrustedForwarder",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
                     }
-                });
-            } catch (err) {
-                document.getElementById("balance").innerHTML = err;
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "lastClaimBlock",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "lastClaimer",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "owner",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "trustedForwarder",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "WITHDRAW_AMOUNT",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
             }
+        ];
+
+        // Initialize Web3 and the contract
+        let web3;
+        let faucetContract;
+
+        window.addEventListener('load', async () => {
+            if (typeof window.ethereum !== 'undefined') {
+                // Modern dapp browsers
+                web3 = new Web3(window.ethereum);
+                try {
+                    // Request account access
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                } catch (error) {
+                    console.error("User denied account access");
+                }
+            } else if (typeof window.web3 !== 'undefined') {
+                // Legacy dapp browsers
+                web3 = new Web3(window.web3.currentProvider);
+            } else {
+                console.error("Non-Ethereum browser detected. You should consider trying MetaMask!");
+                return;
+            }
+
+            // Initialize the contract
+            faucetContract = new web3.eth.Contract(faucetABI, faucetAddress);
+
+            // Display the available balance or other initialization tasks
+            updateUI();
+        });
+
+        async function updateUI() {
+            try {
+                const lastClaimBlock = await faucetContract.methods.lastClaimBlock().call();
+                const globalCooldown = await faucetContract.methods.globalCooldown().call();
+                const lastClaimer = await faucetContract.methods.lastClaimer().call();
+
+                document.getElementById("lastClaimBlock").innerText = lastClaimBlock;
+                document.getElementById("globalCooldown").innerText = globalCooldown;
+                document.getElementById("lastClaimer").innerText = lastClaimer;
+            } catch (error) {
+                console.error("Error updating UI:", error);
+            }
+        }
+
+        async function requestClaim() {
+            try {
+                const accounts = await web3.eth.getAccounts();
+                const fromAddress = accounts[0];
+
+                const data = faucetContract.methods.claim().encodeABI();
+
+                const transactionParameters = {
+                    to: faucetAddress,
+                    from: fromAddress,
+                    data: data,
+                };
+
+                const txHash = await web3.eth.sendTransaction(transactionParameters);
+                document.getElementById("tx_result").innerText = `Transaction successful with hash: ${txHash.transactionHash}`;
+            } catch (error) {
+                document.getElementById("tx_result").innerText = `Transaction failed: ${error.message}`;
+                console.error("Error making claim request:", error);
+            }
+        }
+
+        function closeFooterAd() {
+            document.querySelector('.sticky-footer-ad').style.display = 'none';
+        }
+
+        function closeBannerAd() {
+            document.getElementById('top-banner-ad').style.display = 'none';
+        }
+
+        function comingSoon() {
+            alert("The Stake feature is coming soon!");
+        }
+
+        function contactUs() {
+            window.location.href = "https://twitter.com/overfaucet";
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
