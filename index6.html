@@ -21,7 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #1f1f2e;
+            background: linear-gradient(135deg, #1f1f2e, #31314f); /* Modern gradient background */
             font-family: 'Nunito Sans', sans-serif;
             padding-top: 70px;
             padding-bottom: 30px;
@@ -90,6 +90,7 @@
             padding: 30px;
             margin-bottom: 20px;
             color: #d1d1d1;
+            text-align: center; /* Center the content */
         }
 
         .curved-background {
@@ -229,7 +230,7 @@
         }
 
         .light-mode {
-            background-color: #ffffff;
+            background: linear-gradient(135deg, #ffffff, #f1f1f1); /* Light mode gradient background */
             color: #1f1f2e;
         }
 
@@ -252,6 +253,12 @@
 
         .light-mode a:hover {
             color: #1f1f2e;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            color: #007bff;
+            cursor: pointer;
         }
 
         @media (max-width: 768px) {
@@ -316,7 +323,7 @@
                         <a class="nav-link" href="#" onclick="contactUs()">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <button class="btn btn-light" id="modeToggle" onclick="toggleMode()">Toggle Mode</button>
+                        <span class="toggle-icon" id="modeToggle" onclick="toggleMode()">🌙</span>
                     </li>
                 </ul>
             </div>
@@ -647,7 +654,15 @@
         }
 
         function toggleMode() {
-            document.body.classList.toggle("light-mode");
+            const body = document.body;
+            body.classList.toggle("light-mode");
+
+            const icon = document.getElementById("modeToggle");
+            if (body.classList.contains("light-mode")) {
+                icon.textContent = "☀️"; // Sun icon for light mode
+            } else {
+                icon.textContent = "🌙"; // Moon icon for dark mode
+            }
         }
     </script>
 </body>
