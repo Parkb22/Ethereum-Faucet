@@ -43,45 +43,6 @@
         .content {
             flex: 1;
         }
-    /* Add this CSS to fix the mobile display issue */
-
-.banner-ad {
-    position: relative;
-    width: 100%; /* Ensure it takes full width on mobile */
-    max-width: 100%; /* Max width set to 100% for mobile */
-    margin: 0 auto; /* Center the banner */
-    text-align: center;
-    padding: 10px; /* Adjust padding for mobile */
-    background-color: #252537;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.banner-ad img {
-    max-width: 100%; /* Ensure images are responsive */
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border-radius: 10px;
-}
-
-.banner-ad .close-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px; /* Ensure close button is placed correctly on mobile */
-    background: transparent;
-    border: none;
-    color: #d1d1d1;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .banner-ad {
-        width: 100%; /* Ensure full width on mobile */
-        padding: 10px; /* Adjust padding for better fit on small screens */
-    }
-}
 
         .navbar-custom {
             background-color: #252537;
@@ -251,18 +212,20 @@
 
         .banner-ad {
             position: relative;
-            max-width: 100%;
             width: 100%;
+            max-width: 100%;
             margin: 0 auto;
             text-align: center;
-            padding: 20px;
+            padding: 20px; /* Increase padding for more height */
             background-color: #252537;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            min-height: 100px; /* Set a minimum height to ensure visibility */
         }
 
         .banner-ad img {
             max-width: 100%;
+            max-height: 70px; /* Control image height to fit within the banner */
             height: auto;
             display: block;
             margin: 0 auto;
@@ -271,13 +234,18 @@
 
         .banner-ad .close-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 5px; /* Adjusted for better spacing */
+            right: 5px; /* Ensure close button is placed correctly on mobile */
             background: transparent;
             border: none;
             color: #d1d1d1;
             font-size: 20px;
             cursor: pointer;
+        }
+
+        .banner-ad p {
+            font-size: 14px; /* Adjust font size for mobile */
+            margin-top: 10px; /* Adjust margin to center text better */
         }
 
         body, a, button {
@@ -365,7 +333,8 @@
             .banner-ad {
                 width: 100%;
                 max-width: 100%;
-                padding: 10px;
+                padding: 20px; /* Increase padding to give it more height */
+                min-height: 100px; /* Ensure visibility on mobile */
             }
 
             .btn-claim, .btn-donate, .btn-metamask {
