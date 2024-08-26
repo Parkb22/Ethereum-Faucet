@@ -22,7 +22,7 @@
     <style>
         /* Modernized theme */
         body {
-            background-image: url('https://i.ibb.co/ZYdhfGk/vimal-s-c-PGMrf-Au-USg-unsplash.jpg'); /* Replace with your actual background image URL */
+            background-image: url('https://i.postimg.cc/J00FChjm/pexels-therato-3374210.jpg'); /* Updated with correct image URL */
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
@@ -35,12 +35,26 @@
             line-height: 1.6;
         }
 
+        /* Announcement Header */
+        .announcement-bar {
+            background-color: #00bfff;
+            color: #000;
+            padding: 10px;
+            text-align: center;
+            font-size: 1rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1100;
+        }
+
         /* Navbar styles */
         .navbar-custom {
             background-color: rgba(37, 37, 55, 0.8); /* Semi-transparent background */
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
             padding: 10px 20px;
             border-radius: 10px;
+            margin-top: 40px; /* Adjusted for announcement bar */
         }
 
         .navbar-brand {
@@ -299,6 +313,11 @@
     </style>
 </head>
 <body>
+    <!-- Announcement Header -->
+    <div class="announcement-bar">
+       Now Live on OverProtocol Dolphin Testnet!
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
         <div class="container-fluid">
@@ -380,7 +399,7 @@
     </div>
 
     <!-- Sticky Footer Ad -->
-    <div class="sticky-footer-ad container-style">
+    <div class="sticky-footer-ad container-style" id="footer-ad">
         <button class="close-btn" onclick="closeFooterAd()">×</button>
         <a href="https://overflip.fun">
             <img src="https://s12.gifyu.com/images/SDgv4.gif" alt="Sticky Footer Ad">
@@ -401,8 +420,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.3.1/dist/web3.min.js" crossorigin="anonymous"></script>
 
-    <!-- Your script here -->
+    <!-- Custom JavaScript -->
     <script>
+        const contract_address = '0xB1001A3714C3450F41C243393603Fe4F63b92ba1';
+        const contract_abi = [
+            // Your contract ABI here
+        ];
+
+        function closeBannerAd() {
+            document.getElementById('top-banner-ad').style.display = 'none';
+        }
+
+        function closeFooterAd() {
+            document.getElementById('footer-ad').style.display = 'none';
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         // Your existing JavaScript code
     </script>
 </body>
