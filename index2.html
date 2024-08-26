@@ -22,7 +22,7 @@
     <style>
         /* Modernized theme */
         body {
-            background-image: url('https://i.postimg.cc/zXbJnz69/66441.jpg'); /* Updated with correct image URL */
+            background: linear-gradient(180deg, #000000, #1a1a1a); /* Black to dark grey gradient */
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
@@ -117,6 +117,16 @@
             color: #d1d1d1;
         }
 
+        /* Combined Sections */
+        .combined-section {
+            background: rgba(37, 37, 55, 0.9); /* Semi-transparent background */
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            color: #d1d1d1;
+            text-align: center;
+        }
+
         /* Background with curved drop effect */
         .curved-background {
             background-color: rgba(42, 42, 62, 0.9); /* Semi-transparent background */
@@ -139,7 +149,7 @@
         }
 
         .btn-claim {
-            background-color: #007bff;
+            background-color: #00bfff; /* Updated button color to match the header */
         }
 
         .btn-donate {
@@ -280,6 +290,19 @@
         }
 
         @media (max-width: 768px) {
+            .announcement-bar {
+                padding: 8px; /* Slightly smaller padding for mobile */
+                font-size: 0.9rem; /* Smaller text for mobile */
+            }
+
+            body {
+                padding-top: 140px; /* Increased padding to accommodate both navbar and announcement bar */
+            }
+
+            .navbar-custom {
+                margin-top: 20px; /* Less margin to fit on smaller screens */
+            }
+
             .curved-background {
                 clip-path: none;
                 border-radius: 0;
@@ -379,10 +402,8 @@
                 <button class="btn-donate" role="button" onclick="donateEther()">Donate OVER</button>
             </div>
 
-            <div class="page-header container-style">
-                <h3 style="text-align: center;">Chain Details</h3>
-            </div>
-            <div class="text-center container-style">
+            <div class="combined-section">
+                <h3>Chain Details</h3>
                 <b>Network Name:</b> <span>OverProtocol Dolphin</span><br>
                 <b>RPC URL:</b> <span>http://159.223.78.74:22000</span><br>
                 <b>Chain ID:</b> <span>541764</span><br>
@@ -390,10 +411,8 @@
                 <button class="btn-metamask" onclick="addNetwork()"><b>Add to 🦊 MetaMask</b></button>
             </div>
 
-            <div class="page-header container-style">
-                <h3 style="text-align: center;">Faucet Info</h3>
-            </div>
-            <div class="text-center container-style footer-spacing">
+            <div class="combined-section">
+                <h3>Faucet Info</h3>
                 <b>Contract Address:</b> <a href="https://dolphin.view.over.network/address/0xB1001A3714C3450F41C243393603Fe4F63b92ba1" target="_blank">0xB1001A3714C3450F41C243393603Fe4F63b92ba1</a><br><br>
                 <i>Don't be greedy❤️❤️ Testnet OVER tokens have no value ❤️</i>
             </div>
