@@ -371,141 +371,128 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.3.1/dist/web3.min.js" crossorigin="anonymous"></script>
-
-    <!-- Your script here -->
-    <script>
+ <script>
         const contract_address = '0xB1001A3714C3450F41C243393603Fe4F63b92ba1';
         const contract_abi = [
-          [
-	{
-		"inputs": [
-			{
-				"internalType": "contract MinimalForwarder",
-				"name": "forwarder",
-				"type": "address"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [],
-		"name": "WITHDRAW_AMOUNT",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "claim",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "globalCooldown",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "forwarder",
-				"type": "address"
-			}
-		],
-		"name": "isTrustedForwarder",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "lastClaimBlock",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "lastClaimer",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "trustedForwarder",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
+            {
+                "inputs": [],
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "from",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "uint256",
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "Deposit",
+                "type": "event"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "to",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "uint256",
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "Withdrawal",
+                "type": "event"
+            },
+            {
+                "inputs": [],
+                "name": "COOLDOWN_TIME",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "WITHDRAW_AMOUNT",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "destroy",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "name": "lastClaimTime",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "owner",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "withdraw",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "stateMutability": "payable",
+                "type": "receive"
+            }
         ];
 
         const chainId = '0x84444';  // 541764 in hexadecimal
@@ -520,84 +507,98 @@
                 console.error('Metamask not detected');
                 return;
             }
-            try {
-                await window.ethereum.request({
-                    method: 'wallet_addEthereumChain',
-                    params: [
-                        {
-                            chainId: chainId,
-                            chainName: networkName,
-                            rpcUrls: [rpcURL],
-                            blockExplorerUrls: [explorerURL],
-                            nativeCurrency: {
-                                name: currencyName,
-                                symbol: currencySymbol,
-                                decimals: 18,
-                            },
+            await window.ethereum.request({
+                method: 'wallet_addEthereumChain',
+                params: [
+                    {
+                        chainId: chainId,
+                        chainName: networkName,
+                        rpcUrls: [rpcURL],
+                        blockExplorerUrls: [explorerURL],
+                        nativeCurrency: {
+                            name: currencyName,
+                            symbol: currencySymbol, // 2-6 characters long
+                            decimals: 18,
                         },
-                    ],
-                });
-                alert('Network added successfully!');
-            } catch (error) {
-                console.error(error);
-                alert('Failed to add network. Please try again.');
-            }
+                    },
+                ],
+            });
+            // refresh
+            window.location.reload();
         };
 
-        window.addEventListener('load', async function () {
-            if (typeof window.ethereum !== 'undefined') {
-                window.web3 = new Web3(window.ethereum);
-                try {
-                    await window.ethereum.enable();
-                    getBalance();
-                } catch (error) {
-                    console.error("User denied account access");
-                }
-            } else if (typeof window.web3 !== 'undefined') {
-                window.web3 = new Web3(window.web3.currentProvider);
-                getBalance();
+        window.addEventListener('load', function () {
+            if (typeof web3 !== 'undefined') {
+                web3 = new Web3(window.ethereum);
             } else {
-                console.log('Non-Ethereum browser detected. Consider installing MetaMask!');
+                web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
             }
+
+            new Promise((resolve, reject) => {
+                window.ethereum.enable();
+                resolve();
+            }).then(() => {
+                getBalance();
+            });
         });
 
-        async function requestEther() {
-            try {
-                const accounts = await web3.eth.getAccounts();
-                const Faucet = new web3.eth.Contract(contract_abi, contract_address);
-                const result = await Faucet.methods.withdraw().send({ from: accounts[0] });
-                document.getElementById("tx_result").innerHTML = "TX created successfully with the hash: " + result.transactionHash;
-            } catch (error) {
-                document.getElementById("tx_result").innerHTML = "Error: " + error.message;
-            }
+        function requestEther() {
+            new Promise((resolve, reject) => {
+                getAccounts(function (result) {
+                    const Faucet = new web3.eth.Contract(contract_abi, contract_address);
+                    Faucet.methods.withdraw().send({ from: result[0] }, function (error, result) {
+                        if (!error) {
+                            document.getElementById("tx_result").innerHTML = "TX created successfully with the hash: " + result;
+                        } else {
+                            document.getElementById("tx_result").innerHTML = error;
+                        }
+                    });
+                });
+                resolve();
+            });
         }
 
-        async function donateEther() {
-            const amount = prompt("How much OVER do you want to donate?", "0.5");
-            if (isNaN(parseFloat(amount))) {
+        function donateEther() {
+            var amount = prompt("How much OVER do you want to donate?", "0.5");
+            if (isNaN(parseInt(amount))) {
                 document.getElementById("tx_result").innerHTML = "Error: Please input a valid number";
             } else {
-                try {
-                    const accounts = await web3.eth.getAccounts();
-                    const result = await web3.eth.sendTransaction({
-                        from: accounts[0],
-                        to: contract_address,
-                        value: web3.utils.toWei(amount, 'ether')
+                new Promise((resolve) => {
+                    getAccounts(function (result) {
+                        web3.eth.sendTransaction(
+                            {
+                                from: result[0],
+                                to: contract_address,
+                                value: web3.utils.toWei(amount, 'ether')
+                            }, function (err, transactionHash) {
+                                if (!err)
+                                    document.getElementById("tx_result").innerHTML = "TX created successfully with the hash: " + transactionHash;
+                            });
                     });
-                    document.getElementById("tx_result").innerHTML = "TX created successfully with the hash: " + result.transactionHash;
-                } catch (error) {
-                    document.getElementById("tx_result").innerHTML = "Error: " + error.message;
-                }
+                });
             }
         }
 
-        async function getBalance() {
+        function getAccounts(callback) {
+            web3.eth.getAccounts((error, result) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    callback(result);
+                }
+            });
+        }
+
+        function getBalance() {
             try {
-                const balance = await web3.eth.getBalance(contract_address);
-                const balanceInEther = web3.utils.fromWei(balance, 'ether');
-                document.getElementById("balance").innerHTML = "Available Funds: " + balanceInEther + " OVER";
-            } catch (error) {
-                document.getElementById("balance").innerHTML = "Error fetching balance: " + error.message;
+                web3.eth.getBalance(contract_address, function (error, wei) {
+                    if (!error) {
+                        var balance = web3.utils.fromWei(wei, 'ether');
+                        document.getElementById("balance").innerHTML = "Available Funds: " + balance + " OVER";
+                    }
+                });
+            } catch (err) {
+                document.getElementById("balance").innerHTML = err;
             }
         }
 
@@ -610,7 +611,7 @@
         }
 
         function comingSoon() {
-            alert("This feature is coming soon!");
+            alert("The Stake feature is coming soon!");
         }
 
         function contactUs() {
@@ -620,15 +621,6 @@
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        // Show/hide back to top button based on scroll position
-        window.onscroll = function() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                document.getElementById("back-to-top").style.display = "block";
-            } else {
-                document.getElementById("back-to-top").style.display = "none";
-            }
-        };
     </script>
 </body>
 </html>
