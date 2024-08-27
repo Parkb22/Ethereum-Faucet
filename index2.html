@@ -1,84 +1,4 @@
-/* Updated styles */
-body {
-    background: linear-gradient(45deg, #0a0a1a, #1a1a2e);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    color: #ffffff;
-}
-
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-h1, h2, h3 {
-    font-family: 'Orbitron', sans-serif;
-    color: #00ffff;
-    text-shadow: 0 0 10px rgba(0,255,255,0.5);
-}
-
-.container-style {
-    background: rgba(37, 37, 55, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    transition: transform 0.3s ease;
-}
-
-.container-style:hover {
-    transform: translateY(-5px);
-}
-
-.btn-claim, .btn-donate, .btn-metamask {
-    background: linear-gradient(45deg, #00ffff, #ff00ff);
-    border: none;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-claim:before, .btn-donate:before, .btn-metamask:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: all 0.5s;
-}
-
-.btn-claim:hover:before, .btn-donate:hover:before, .btn-metamask:hover:before {
-    left: 100%;
-}
-
-.navbar-custom {
-    background: rgba(37, 37, 55, 0.8);
-    backdrop-filter: blur(10px);
-}
-
-#balance {
-    font-size: 2rem;
-    color: #ffff00;
-    text-shadow: 0 0 10px rgba(255,255,0,0.5);
-}
-To fully modernize the site, you'd also want to:
-
-Update the HTML structure to use more semantic tags
-Implement responsive design for better mobile experience
-Add modern JavaScript features like smooth scrolling and lazy loading
-Consider using a JavaScript framework like React or Vue for more dynamic content
-Optimize images and use modern formats like WebP
-Implement accessibility features for a wider audience
-
-Would you like me to provide more specific code changes or focus on any particular area of the website? CopyRetryClaude does not have the ability to run the code it generates yet.YGive me the full code so i can copy and paste itEditCertainly. I'll provide you with an updated version of your HTML file that incorporates the modern and high-tech design elements we discussed. Please note that this is a comprehensive change, so you'll want to review it carefully and may need to adjust some elements to fit your specific needs.
-Here's the full HTML code with embedded CSS and JavaScript:
-htmlCopy<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
@@ -429,7 +349,8 @@ htmlCopy<!DOCTYPE html>
             </div>
         </div>
     </div>
-    <!-- Sticky Footer Ad -->
+
+<!-- Sticky Footer Ad -->
     <div class="sticky-footer-ad container-style">
         <button class="close-btn" onclick="closeFooterAd()">×</button>
         <a href="https://overflip.fun">
@@ -582,4 +503,3 @@ htmlCopy<!DOCTYPE html>
     </script>
 </body>
 </html>
-    
